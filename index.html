@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Cache buster: 20250914-1312 -->
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="HetroD is a high-fidelity drone dataset and benchmark for understanding heterogeneous traffic in autonomous driving.">
+  <!-- Open Graph for Facebook, LinkedIn -->
+  <meta property="og:title" content="HetroD: A High-Fidelity Drone Dataset for Autonomous Driving in Heterogeneous Traffic ">
+  <meta property="og:description" content="Project page for HetroD, a drone dataset and benchmark for heterogeneous traffic understanding in autonomous driving. Accepted at ICCV 2025 DriveX.">
+  <meta property="og:url" content="https://your-domain.org/HetroD">
+  <meta property="og:image" content="static/images/hetrod_banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <!-- Twitter -->
+  <meta name="twitter:title" content="HetroD: A Drone Dataset for Heterogeneous Traffic">
+  <meta name="twitter:description" content="ICCV 2025 project page for HetroD: Drone dataset and benchmark for autonomous driving research.">
+  <meta name="twitter:image" content="static/images/hetrod_twitter_banner.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="HetroD, drone dataset, heterogeneous traffic, autonomous driving, ICCV 2025 DriveX, benchmark, trajectory prediction, computer vision">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>HetroD: Drone Dataset for Heterogeneous Traffic | ICCV 2025</title>
+  <!--   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
+  <!--   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" -->
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <style>
+    /* Enhanced comprehensive styling system */
+    .title-underline {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(45deg, #3273dc, #00d1b2);
+      margin: 0 auto 1rem;
+      border-radius: 2px;
+    }
+    
+    /* Improved spacing and typography */
+    .has-line-height-relaxed {
+      line-height: 1.8;
+    }
+    
+    /* Enhanced hover effects */
+    .has-shadow-hover {
+      transition: all 0.3s ease;
+      border: 1px solid #e8e8e8;
+    }
+    
+    .has-shadow-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      border-color: #3273dc;
+    }
+    
+    /* Video and image enhancements */
+    .image-link:hover img {
+      transform: scale(1.02);
+      transition: transform 0.3s ease;
+    }
+    
+    .video-container {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border: 1px solid #e3e8ed;
+    }
+    
+    .video-container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+      border-color: #3273dc;
+    }
+    
+    .video-element {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .video-element:hover {
+      box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+    }
+    
+    /* GIF and behavior category styling */
+    .behavior-category {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 1px solid #e3e8ed;
+      margin-bottom: 2rem;
+    }
+    
+    .gif-container {
+      background: white;
+      padding: 0.5rem;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border: 1px solid #e8e8e8;
+    }
+    
+    .gif-container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+      border-color: #3273dc;
+    }
+    
+    .gif-element {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    /* Enhanced table styling */
+    .table {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 1px solid #e3e8ed;
+      background: white;
+    }
+    
+    .table thead th {
+      background: linear-gradient(135deg, #3273dc 0%, #00d1b2 100%);
+      color: white;
+      font-weight: 600;
+      text-align: center;
+      padding: 1rem 0.75rem;
+      border: none;
+    }
+    
+    .table tbody td {
+      padding: 0.75rem;
+      vertical-align: middle;
+      text-align: center;
+      border-color: #f0f0f0;
+    }
+    
+    .table tbody tr:hover {
+      background-color: #f8f9fa;
+      transition: background-color 0.2s ease;
+    }
+    
+    /* Improved button styling */
+    .button.is-rounded {
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+    }
+    
+    .button.is-rounded:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    
+    .button.is-primary {
+      background: linear-gradient(135deg, #3273dc 0%, #00d1b2 100%);
+      border: none;
+    }
+    
+    .button.is-success {
+      background: linear-gradient(135deg, #48c774 0%, #23d160 100%);
+      border: none;
+    }
+    
+    .button.is-info {
+      background: linear-gradient(135deg, #3298dc 0%, #209cee 100%);
+      border: none;
+    }
+    
+    .button.is-warning {
+      background: linear-gradient(135deg, #ffdd57 0%, #ffa726 100%);
+      border: none;
+    }
+    
+    /* Section spacing */
+    .hero-body {
+      padding: 3rem 1.5rem;
+    }
+    
+    /* Enhanced color scheme */
+    .has-gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">HetroD: A High-Fidelity Drone Dataset and Benchmark for Autonomous Driving in Heterogeneous Traffic</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                Anonymous
+                  <span class="author-block">
+                  </span>
+              
+                  </div>
+
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://hetrod-data.github.io/HetroD/" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://hetrod-data.github.io/HetroD/" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://hetrod-data.github.io/HetroD/" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+                </span>
+
+                <!-- Dataset Link -->
+                <span class="link-block">
+                  <a href="https://hetrod-data.github.io/HetroD/" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+            </div>
+            <!-- Release note added below -->
+            <p class="has-text-centered mt-4">
+              <strong>Note:</strong> The dataset, toolchain, and paper will be released after September 2025.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Teaser image with description -->
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <div class="box has-background-white has-shadow-hover">
+        <figure class="image mb-5">
+          <a href="static/docs/HetroD_Teaser.pdf" target="_blank" class="image-link">
+            <img src="static/images/teaserv12.png" alt="HetroD Teaser Image" style="max-width: 100%; height: auto; border-radius: 8px;">
+          </a>
+        </figure>
+        <h2 class="subtitle has-text-justified is-size-5 has-text-grey-dark">
+          HetroD is a high-fidelity, drone dataset that captures unstructured maneuvers such as hook turns, aggressive overtakes, queue
+          cutting, and congested crossings. These maneuvers are critical testing scenarios for the deployment of autonomous driving systems, yet
+          remain underexplored in the community. We construct a benchmark to evaluate existing methods in motion planning, motion prediction,
+          and cross-dataset evaluation of model performance. The benchmark focuses on heterogeneous traffic environments involving dense, fine-
+          grained interactions among vehicles, scooters, cyclists, and pedestrians.
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End teaser image -->
+
+
+
+<!-- Paper abstract -->
+<section class="section hero">
+  <div class="hero-body">
+    <div class="container is-widescreen">
+      <div class="box has-background-white has-shadow-hover">
+        <div class="has-text-centered mb-5">
+          <h2 class="title is-3 has-text-primary">Abstract</h2>
+          <div class="title-underline"></div>
+        </div>
+        <div class="content has-text-justified is-size-5 has-text-grey-dark">
+          <div class="columns is-centered">
+            <div class="column is-10">
+              <p class="has-line-height-relaxed">
+                We present HetroD, a dataset and benchmark for developing autonomous driving systems in heterogeneous environments. HetroD targets the critical challenge of navigating real-world traffic dominated by <em>vulnerable road users (VRUs)</em> including pedestrians, cyclists, and motorcyclists alongside vehicles. These mixed agent types exhibit complex behaviors such as hook turns, lane splitting, and informal right-of-way negotiation. Such behaviors pose significant challenges for autonomous vehicles but remain underrepresented in existing datasets focused on structured, lane-disciplined traffic. To bridge the gap, we introduce a large-scale drone-based dataset to provide a holistic observations of traffic scenes with centimeter-accurate annotations, HD maps, and traffic signal states. We further develop a modular toolchain for extracting per-agent scenarios to support seamless development. In total, the dataset compreises over 65.4k high-fidelity agent trajectories, 70% of which are from VRUs. HetroD supports modeling of VRU behaviors in dense, heterogeneous traffic and provides standardized benchmarks for forecasting, planning, and simulation tasks. Evaluation results reveal that state-of-the-art prediction and planning models struggle with the challenges presented by our dataset: they fail to predict lateral VRU movements, cannot handle unstructured maneuvers, and exhibit limited performance in dense and multi-agent scenarios, highlighting the need for more robust approaches to heterogeneous traffic.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+
+
+
+
+<!-- Youtube video -->
+<!-- <section class="hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="box has-background-white has-shadow-hover">
+        <div class="has-text-centered mb-5">
+          <h2 class="title is-3 has-text-primary">Video Presentation</h2>
+          <div class="title-underline"></div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <div class="publication-video" style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+              Youtube embed code here
+              <iframe src="https://youtu.be/aEx953vaHf8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width: 100%; height: 400px;"></iframe>
+              -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End youtube video -->
+
+
+<!-- Location Samples Section -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="box has-background-white has-shadow-hover">
+        <div class="has-text-centered mb-5">
+          <h2 class="title is-3 has-text-primary">Location Samples</h2>
+        <div class="columns is-multiline is-variable is-4">
+          <div class="column is-half">
+            <div class="video-container">
+              <h4 class="title is-5 has-text-centered has-text-info mb-4">Location 1</h4>
+              <video controls class="video-element">
+                <source src="static/videos/location_sample/loc1.mp4?v=20250914" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="video-container">
+              <h4 class="title is-5 has-text-centered has-text-info mb-4">Location 2</h4>
+              <video controls class="video-element">
+                <source src="static/videos/location_sample/loc2.mp4?v=20250914" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="video-container">
+              <h4 class="title is-5 has-text-centered has-text-info mb-4">Location 3</h4>
+              <video controls class="video-element">
+                <source src="static/videos/location_sample/loc3.mp4?v=20250914" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="video-container">
+              <h4 class="title is-5 has-text-centered has-text-info mb-4">Location 4</h4>
+              <video controls class="video-element">
+                <source src="static/videos/location_sample/loc4.mp4?v=20250914" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="video-container">
+              <h4 class="title is-5 has-text-centered has-text-info mb-4">Location 5</h4>
+              <video controls class="video-element">
+                <source src="static/videos/location_sample/loc5.mp4?v=20250914" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="video-container">
+              <h4 class="title is-5 has-text-centered has-text-info mb-4">Location 6</h4>
+              <video controls class="video-element">
+                <source src="static/videos/location_sample/loc6.mp4?v=20250914" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Location Samples -->
+
+
+<!-- Complex Behaviors Section -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Complex Behaviors</h2> 
+      <!-- Congested Crossings -->
+      <div class="behavior-category mb-6">
+        <h3 class="title is-4 has-text-centered has-text-info mb-4">Congested Crossings</h3>
+        <div class="columns is-multiline is-centered">
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/congested_crossings/00_loc18_seg103_ego_1_1012.gif" alt="Congested Crossing 1" class="gif-element">
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/congested_crossings/00_loc18_seg148_ego_1_1516.gif" alt="Congested Crossing 2" class="gif-element">
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/congested_crossings/00_loc18_seg149_ego_1_1619.gif" alt="Congested Crossing 3" class="gif-element">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hook Turns -->
+      <div class="behavior-category mb-6">
+        <h3 class="title is-4 has-text-centered has-text-info mb-4">Hook Turns</h3>
+        <div class="columns is-multiline is-centered">
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/HookTurn/00_loc18_seg31_ego_1_376.gif" alt="Hook Turn 1" class="gif-element">
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/HookTurn/01_loc18_seg168_ego_1_1872.gif" alt="Hook Turn 2" class="gif-element">
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/HookTurn/01_loc18_seg59_ego_1_613.gif" alt="Hook Turn 3" class="gif-element">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Illegal Right Turns -->
+      <div class="behavior-category mb-6">
+        <h3 class="title is-4 has-text-centered has-text-info mb-4">Illegal Right Turns</h3>
+        <div class="columns is-multiline is-centered">
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/illegal_rught_turn/00_loc18_seg120_ego_1_1284.gif" alt="Illegal Right Turn 1" class="gif-element">
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/illegal_rught_turn/01_loc18_seg166_ego_1_1858.gif" alt="Illegal Right Turn 2" class="gif-element">
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/illegal_rught_turn/23_loc5_seg376_ego_1_2570.gif" alt="Illegal Right Turn 3" class="gif-element">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigate Around Illegal Park -->
+      <div class="behavior-category mb-6">
+        <h3 class="title is-4 has-text-centered has-text-info mb-4">Navigate Around Illegal Parking</h3>
+        <div class="columns is-multiline is-centered">
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/navigatearoundillegalpark/00_loc18_seg124_ego_1_1101.gif" alt="Navigate Illegal Park 1" class="gif-element">
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/navigatearoundillegalpark/00_loc18_seg153_ego_1_1727.gif" alt="Navigate Illegal Park 2" class="gif-element">
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/navigatearoundillegalpark/00_loc18_seg19_ego_1_232.gif" alt="Navigate Illegal Park 3" class="gif-element">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reverse Lane Usage -->
+      <div class="behavior-category mb-6">
+        <h3 class="title is-4 has-text-centered has-text-info mb-4">Reverse Lane Usage</h3>
+        <div class="columns is-multiline is-centered">
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/reverselaneusage/00_loc18_seg100_ego_1_1104.gif" alt="Reverse Lane Usage 1" class="gif-element">
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/reverselaneusage/00_loc18_seg124_ego_1_1383.gif" alt="Reverse Lane Usage 2" class="gif-element">
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/reverselaneusage/00_loc18_seg132_ego_1_1469.gif" alt="Reverse Lane Usage 3" class="gif-element">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unauthorized U-turns -->
+      <div class="behavior-category mb-6">
+        <h3 class="title is-4 has-text-centered has-text-info mb-4">Unauthorized U-turns</h3>
+        <div class="columns is-multiline is-centered">
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/unauthorized_uturns/00_loc18_seg125_ego_1_1387.gif" alt="Unauthorized U-turn 1" class="gif-element">
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/unauthorized_uturns/00_loc18_seg13_ego_1_195.gif" alt="Unauthorized U-turn 2" class="gif-element">
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="gif-container">
+              <img src="static/videos/complex_behavior_cropped/unauthorized_uturns/00_loc18_seg174_ego_1_1938.gif" alt="Unauthorized U-turn 3" class="gif-element">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Complex Behaviors -->
+
+
+<!-- Statistics Section -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Statistics</h2>
+
+      <!-- First row of images -->
+      <div class="columns is-multiline is-centered mb-5">
+        <div class="column is-half">
+          <figure class="image">
+            <img src="static/images/agent_typev2.png" alt="Agent Type Distribution">
+          </figure>
+        </div>
+        <div class="column is-half">
+          <figure class="image">
+            <img src="static/images/riskv8.png" alt="Risk Assessment Analysis">
+          </figure>
+        </div>
+      </div>
+
+      <!-- Statistics table -->
+      <div class="mb-5">
+        <h4 class="title is-5 has-text-centered mb-4">TABLE I: Comparison of Datasets on Interaction, Density & Diversity Metrics</h4>
+        <p class="subtitle is-6 has-text-centered mb-4 has-text-grey-dark" style="max-width: 1000px; margin: 0 auto;">
+        Interaction Scale<sup>1</sup> is the total number of interactions, computed per dataset by aggregating over all its scenarios and then normalized across datasets. Heterogeneous Interaction Scale<sup>2</sup> counts cross-type interactions with the same per-dataset aggregation and normalization. Geographical Density<sup>3</sup> represents the average number of agents per unit area A within an 8-second window. VRUs<sup>4</sup> denotes the proportion of vulnerable road users among all traffic agents. All metrics except VRUs are min–max normalized to [0,1] across datasets where the metric is available; VRUs is reported in percent.
+        </p>
+        <div class="columns is-centered">
+          <div class="column">
+            <table class="table is-fullwidth is-striped">
+              <thead>
+                <tr>
+                  <th>Dataset</th>
+                  <th>Platform</th>
+                  <th>Tracks</th>
+                  <th>Duration</th>
+                  <th>Interaction Scale<sup>1</sup></th>
+                  <th>Heterogeneous Interaction Scale<sup>2</sup></th>
+                  <th>Geographical Density<sup>3</sup></th>
+                  <th>VRUs (%)<sup>4</sup></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>NuScenes [1]</strong></td>
+                  <td>On-board</td>
+                  <td>∼90k†</td>
+                  <td>320h</td>
+                  <td>0.675</td>
+                  <td>0.549</td>
+                  <td>—</td>
+                  <td>20.1%</td>
+                </tr>
+                <tr>
+                  <td><strong>Waymo [2]</strong></td>
+                  <td>On-board</td>
+                  <td>7.6M</td>
+                  <td>574h</td>
+                  <td>1.000</td>
+                  <td>1.000</td>
+                  <td>—</td>
+                  <td>11.5%</td>
+                </tr>
+                <tr>
+                  <td><strong>Argoverse2 [3]</strong></td>
+                  <td>On-board</td>
+                  <td>13.9M</td>
+                  <td>763h</td>
+                  <td>0.632</td>
+                  <td>0.318</td>
+                  <td>—</td>
+                  <td>10.0%</td>
+                </tr>
+                <tr>
+                  <td><strong>NuPlan [4]</strong></td>
+                  <td>On-board</td>
+                  <td>∼5M†</td>
+                  <td>1282h</td>
+                  <td>0.274</td>
+                  <td>0.213</td>
+                  <td>—</td>
+                  <td>46.3%</td>
+                </tr>
+                <tr>
+                  <td><strong>INTERACTION [5]</strong></td>
+                  <td>Drone</td>
+                  <td>40k</td>
+                  <td>16.5h</td>
+                  <td>0.132</td>
+                  <td>—</td>
+                  <td>0.011</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>inD [6]</strong></td>
+                  <td>Drone</td>
+                  <td>13.5k</td>
+                  <td>10h</td>
+                  <td>0.071</td>
+                  <td>0.185</td>
+                  <td>0.023</td>
+                  <td>39.4%</td>
+                </tr>
+                <tr>
+                  <td><strong>SinD [7]</strong></td>
+                  <td>Drone</td>
+                  <td>13.2k</td>
+                  <td>7.02h</td>
+                  <td>0.099</td>
+                  <td>0.324</td>
+                  <td>0.016</td>
+                  <td>62.1%</td>
+                </tr>
+                <tr style="background-color: #f0f8ff;">
+                  <td><strong>HetroD</strong></td>
+                  <td>Drone</td>
+                  <td>65.4k</td>
+                  <td>17.5h</td>
+                  <td>0.223</td>
+                  <td>0.889</td>
+                  <td>0.026</td>
+                  <td>69.9%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Table footnotes -->
+        <div class="content is-small has-text-grey-dark mt-4" style="max-width: 1000px; margin: 0 auto;">
+          <p><strong>Notes:</strong></p>
+          <p>† Estimated values based on official statistics.</p>
+          <p>— Metric not available.</p>
+          <p><sup>1</sup> S<sub>inter</sub> = Σ<sub>scenarios</sub> D<sub>inter</sub>.</p>
+          <p><sup>2</sup> S<sub>het</sub> = Σ<sub>scenarios</sub> Σ<sub>i,j</sub> 1(TTC<sub>i,j</sub> &lt; 2 s ∧ type<sub>i</sub> ≠ type<sub>j</sub>).</p>
+          <p><sup>3</sup> D<sub>geo</sub> = N/A, where N is the number of agents within an 8 s window and A is the corresponding area.</p>
+          <p><sup>4</sup> VRUs = 100 × N<sub>VRU</sub>/(N<sub>VRU</sub> + N<sub>Veh</sub>) (VRU: pedestrians, bicycles/cyclists, motorcycles, tricycles; Vehicles: cars, trucks, buses, vans)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Statistics -->
+
+
+<!-- Evaluation Section -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Evaluation Results</h2>
+
+      <!-- Prediction Results -->
+      <div class="mb-6">
+        <h3 class="title is-4 has-text-centered has-text-info mb-5">Prediction Results</h3>
+        <p class="subtitle is-6 has-text-centered mb-5 has-text-grey-dark">
+          Motion prediction models struggle due to heterogeneous traffic complexity.
+        </p>
+
+      <!-- Cross-dataset evaluation tables side by side -->
+      <div class="mb-6">
+        <h5 class="title is-5 has-text-centered mb-4">TABLE II: Cross-dataset evaluation (Brier-FDE ↓)</h5>
+        <div class="columns is-variable is-4">
+          <!-- MTR Results -->
+          <div class="column is-half">
+            <div class="box has-background-light">
+              <h6 class="subtitle is-6 has-text-centered has-text-weight-bold mb-3">MTR</h6>
+              <table class="table is-fullwidth is-striped">
+                <thead>
+                  <tr>
+                    <th style="font-size: 0.9em;">Train \ Test</th>
+                    <th style="font-size: 0.8em;">NuScenes</th>
+                    <th style="font-size: 0.8em;">Waymo*</th>
+                    <th style="font-size: 0.8em;">SinD</th>
+                    <th style="font-size: 0.8em;">HetroD</th>
+                  </tr>
+                </thead>
+                <tbody style="font-size: 0.9em;">
+                  <tr>
+                    <td><strong>NuScenes</strong></td>
+                    <td>2.95</td>
+                    <td>10.43</td>
+                    <td>5.14</td>
+                    <td>6.76</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Waymo</strong></td>
+                    <td>4.01</td>
+                    <td>2.28</td>
+                    <td>4.26</td>
+                    <td>6.71</td>
+                  </tr>
+                  <tr>
+                    <td><strong>SinD</strong></td>
+                    <td>16.07</td>
+                    <td>26.34</td>
+                    <td>2.06</td>
+                    <td>3.30</td>
+                  </tr>
+                  <tr style="background-color: #e8f4f8;">
+                    <td><strong>HetroD</strong></td>
+                    <td>21.39</td>
+                    <td>26.49</td>
+                    <td>3.71</td>
+                    <td><strong>0.44</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Wayformer Results -->
+          <div class="column is-half">
+            <div class="box has-background-light">
+              <h6 class="subtitle is-6 has-text-centered has-text-weight-bold mb-3">Wayformer</h6>
+              <table class="table is-fullwidth is-striped">
+                <thead>
+                  <tr>
+                    <th style="font-size: 0.9em;">Train \ Test</th>
+                    <th style="font-size: 0.8em;">NuScenes</th>
+                    <th style="font-size: 0.8em;">Waymo*</th>
+                    <th style="font-size: 0.8em;">SinD</th>
+                    <th style="font-size: 0.8em;">HetroD</th>
+                  </tr>
+                </thead>
+                <tbody style="font-size: 0.9em;">
+                  <tr>
+                    <td><strong>NuScenes</strong></td>
+                    <td>2.99</td>
+                    <td>8.79</td>
+                    <td>5.23</td>
+                    <td>9.37</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Waymo</strong></td>
+                    <td>2.67</td>
+                    <td>2.20</td>
+                    <td>3.53</td>
+                    <td>10.75</td>
+                  </tr>
+                  <tr>
+                    <td><strong>SinD</strong></td>
+                    <td>8.23</td>
+                    <td>13.40</td>
+                    <td>1.96</td>
+                    <td>9.23</td>
+                  </tr>
+                  <tr style="background-color: #e8f4f8;">
+                    <td><strong>HetroD</strong></td>
+                    <td>19.57</td>
+                    <td>25.28</td>
+                    <td>8.06</td>
+                    <td><strong>0.75</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <p class="is-size-7 has-text-grey-dark has-text-centered mt-2">
+          *Waymo uses 30% of its original training data due to resource constraints.
+        </p>
+      </div>
+
+      <!-- TABLE III: Ablation study -->
+      <div class="mb-6">
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <div class="box has-background-white-bis">
+              <h5 class="title is-6 has-text-centered mb-3">TABLE III: Ablation on HetroD splits</h5>
+              <table class="table is-fullwidth is-striped">
+                <thead>
+                  <tr>
+                    <th>Setting</th>
+                    <th>MTR</th>
+                    <th>Wayformer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Same-map</strong></td>
+                    <td>0.44</td>
+                    <td>0.75</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Diff-map</strong></td>
+                    <td>1.17 (+166%)</td>
+                    <td>1.53 (+104%)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Diff-time</strong></td>
+                    <td>0.42 (−5%)</td>
+                    <td>0.76 (+1%)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLE IV: Scenario-conditioned results -->
+      <div class="mb-6">
+        <div class="box has-background-white">
+          <h5 class="title is-5 has-text-centered mb-4">TABLE IV: Scenario-conditioned Brier-FDE (↓) on HetroD</h5>
+          <div class="columns is-centered">
+            <div class="column is-four-fifths">
+              <table class="table is-fullwidth is-striped">
+                <thead>
+                  <tr>
+                    <th style="width: 40%;">Scenario</th>
+                    <th style="width: 20%;">MTR-Waymo*</th>
+                    <th style="width: 20%;">MTR-SinD</th>
+                    <th style="width: 20%; background-color: #e8f4f8;"><strong>MTR-HetroD</strong></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="has-text-weight-bold has-background-grey-lighter">
+                    <td colspan="4">Agent type</td>
+                  </tr>
+                  <tr>
+                    <td>Vehicle</td>
+                    <td>3.64</td>
+                    <td>2.55</td>
+                    <td style="background-color: #f0f8ff;"><strong>0.83</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Two-wheeler</td>
+                    <td>8.69</td>
+                    <td>4.63</td>
+                    <td style="background-color: #f0f8ff;"><strong>1.16</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Pedestrian</td>
+                    <td>2.85</td>
+                    <td>1.17</td>
+                    <td style="background-color: #f0f8ff;"><strong>0.26</strong></td>
+                  </tr>
+                  <tr class="has-text-weight-bold has-background-grey-lighter">
+                    <td colspan="4">Cross-type TTC risk</td>
+                  </tr>
+                  <tr>
+                    <td>High risk (TTC &lt; 2 s)</td>
+                    <td>8.51</td>
+                    <td>4.76</td>
+                    <td style="background-color: #f0f8ff;"><strong>1.25</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Moderate (2 ≤ min TTC &lt; 4 s)</td>
+                    <td>8.48</td>
+                    <td>4.67</td>
+                    <td style="background-color: #f0f8ff;"><strong>1.19</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Low (TTC &gt; 4 s)</td>
+                    <td>7.87</td>
+                    <td>4.00</td>
+                    <td style="background-color: #f0f8ff;"><strong>0.90</strong></td>
+                  </tr>
+                  <tr class="has-text-weight-bold has-background-grey-lighter">
+                    <td colspan="4">Scene-level heterogeneity</td>
+                  </tr>
+                  <tr>
+                    <td>Low heterogeneity density</td>
+                    <td>5.01</td>
+                    <td>3.08</td>
+                    <td style="background-color: #f0f8ff;"><strong>0.90</strong></td>
+                  </tr>
+                  <tr>
+                    <td>High heterogeneity density</td>
+                    <td>8.04</td>
+                    <td>4.25</td>
+                    <td style="background-color: #f0f8ff;"><strong>1.06</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="content is-small has-text-grey-dark mt-3" style="max-width: 800px; margin: 0 auto;">
+            <p><strong>Distribution:</strong> Vehicles 39.4%, Two-wheelers 51.5%, Pedestrians 9.1% | TTC: High 26.5%, Moderate 8.7%, Low 64.8% | Heterogeneity: Low 66.3%, High 33.7%</p>
+          </div>
+        </div>
+      </div>
+
+      </div> <!-- End Prediction Results -->
+
+      <!-- Planning Results -->
+      <div class="mb-6">
+        <h3 class="title is-4 has-text-centered has-text-success mb-5">Planning Results</h3>
+        <p class="subtitle is-6 has-text-centered mb-5 has-text-grey-dark">
+          SOTA Rule-based planners show increased collision rates in heterogeneous traffic scenarios.
+        </p>
+
+      <!-- TABLE V: Planning results -->
+      <div class="mb-6">
+        <div class="box has-background-white-ter">
+          <h5 class="title is-5 has-text-centered mb-4">TABLE V: Closed-loop Planning Results</h5>
+          <div class="table-container">
+            <table class="table is-fullwidth is-striped" style="font-size: 0.9em;">
+              <thead>
+                <tr>
+                  <th style="width: 12%;">Dataset</th>
+                  <th style="width: 15%;">Planner</th>
+                  <th style="width: 12%;">NuPlan Score ↑</th>
+                  <th style="width: 12%;">TTC Bound ↑</th>
+                  <th style="width: 12%;">Progress ↑</th>
+                  <th style="width: 12%;">Lane Score ↑</th>
+                  <th style="width: 10%;">Comfort ↑</th>
+                  <th style="width: 15%;">Collisions ↓</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="2"><strong>NuPlan</strong></td>
+                  <td><strong>IDM</strong></td>
+                  <td>0.85</td>
+                  <td>0.94</td>
+                  <td>0.92</td>
+                  <td>0.99</td>
+                  <td>0.48</td>
+                  <td>0.016</td>
+                </tr>
+                <tr>
+                  <td><strong>PDM-Closed</strong></td>
+                  <td>0.83</td>
+                  <td>0.97</td>
+                  <td>0.91</td>
+                  <td>0.99</td>
+                  <td>0.31</td>
+                  <td>0.006</td>
+                </tr>
+                <tr style="background-color: #e8f4f8;">
+                  <td rowspan="2" style="background-color: #e8f4f8;"><strong>HetroD</strong></td>
+                  <td><strong>IDM</strong></td>
+                  <td>0.68</td>
+                  <td>0.91</td>
+                  <td>0.81</td>
+                  <td>0.89</td>
+                  <td>0.37</td>
+                  <td><strong>0.074</strong></td>
+                </tr>
+                <tr style="background-color: #e8f4f8;">
+                  <td><strong>PDM-Closed</strong></td>
+                  <td>0.70</td>
+                  <td>0.95</td>
+                  <td>0.78</td>
+                  <td>0.97</td>
+                  <td>0.21</td>
+                  <td><strong>0.040</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLE VI: VRU collision breakdown -->
+      <div class="mb-6">
+        <h5 class="title is-6 has-text-centered mb-3">TABLE VI: VRU collision breakdown on HetroD</h5>
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <table class="table is-fullwidth is-striped">
+              <thead>
+                <tr>
+                  <th>Planner</th>
+                  <th>At-Fault Collision Rate</th>
+                  <th>VRU Front Collision Rate</th>
+                  <th>VRU Lateral Collision Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>IDM</strong></td>
+                  <td>0.074</td>
+                  <td>0.008</td>
+                  <td>0.031</td>
+                </tr>
+                <tr>
+                  <td><strong>PDM-Closed</strong></td>
+                  <td>0.040</td>
+                  <td>0.004</td>
+                  <td>0.022</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      </div> <!-- End Planning Results -->
+    </div>
+  </div>
+</section>
+<!-- End Evaluation -->
+
+
+<!-- Qualitative Results Section -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Qualitative Results</h2>
+      <!-- Planning Failed Examples -->
+      <div class="mb-6">
+        <h3 class="title is-4 has-text-centered mb-4">Planning Failed Examples</h3>
+        <div class="columns is-multiline">
+          <div class="column is-half">
+            <h4 class="title is-6 has-text-centered">Dense Traffic Scenario</h4>
+            <video controls style="width: 100%; height: auto;">
+              <source src="static/videos/planning_failed_example/busy_straight_road.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="column is-half">
+            <h4 class="title is-6 has-text-centered">VRU Interaction Failure</h4>
+            <video controls style="width: 100%; height: auto;">
+              <source src="static/videos/planning_failed_example/negotiation.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="column is-half">
+            <h4 class="title is-6 has-text-centered">Unstructured Maneuver</h4>
+            <video controls style="width: 100%; height: auto;">
+              <source src="static/videos/planning_failed_example/right_turn.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="column is-half">
+            <h4 class="title is-6 has-text-centered">Multi-Agent Collision</h4>
+            <video controls style="width: 100%; height: auto;">
+              <source src="static/videos/planning_failed_example/unprotrcted_left_turn.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prediction Qualitative Results -->
+      <div class="mb-6">
+        <h3 class="title is-4 has-text-centered mb-4">Prediction Qualitative Results</h3>
+        <p class="subtitle is-6 has-text-centered mb-4 has-text-grey-dark">
+          Latent scenario embeddings from Wayformer trained on Waymo, revealing distinct clustering and prediction challenges across datasets
+        </p>
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <figure class="image">
+              <img src="static/images/latent_embeddingv8-1.png" alt="Latent Scenario Embeddings and Prediction Error Analysis" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+              <figcaption class="has-text-centered mt-4 is-size-6 has-text-grey-dark" style="max-width: 900px; margin: 1rem auto 0;">
+                <strong>Latent scenario embeddings and prediction error analysis.</strong>
+                Waymo and NuScenes share similar latent structure with substantial overlap, whereas HetroD scenarios occupy distinct regions, reflecting complex behaviors and marked differences in heterogeneity.
+                HetroD scenarios are particularly challenging: the model frequently over-predicts in dense VRU interactions, failing to capture rich frontal interactions and nuanced intent among crowded agents.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Qualitative Results -->
+
+
+<!-- Video carousel -->
+<!-- <section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Another Carousel</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <video poster="" id="video1" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <!--             <source src="static/videos/carousel1.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+            <!-- Your video file here -->
+            <!--             <source src="static/videos/carousel2.mp4"
+            type="video/mp4">
+          </video> -->
+        </div>
+        <!--         <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">\ 
+            <!-- Your video file here -->
+            <!--             <source src="static/videos/carousel3.mp4"
+            type="video/mp4">
+          </video>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section> 
+<!-- End video carousel -->
+
+
+
+
+
+
+<!-- Paper poster -->
+<!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Poster</h2>
+
+      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
+          </iframe>
+        
+      </div>
+    </div>
+  </section> -->
+<!--End paper poster -->
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>BibTex Code Here</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
