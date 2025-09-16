@@ -8,7 +8,7 @@
   <meta name="description" content="HetroD is a high-fidelity drone dataset and benchmark for understanding heterogeneous traffic in autonomous driving.">
   <!-- Open Graph for Facebook, LinkedIn -->
   <meta property="og:title" content="HetroD: A High-Fidelity Drone Dataset for Autonomous Driving in Heterogeneous Traffic ">
-  <meta property="og:description" content="Project page for HetroD, a drone dataset and benchmark for heterogeneous traffic understanding in autonomous driving. Accepted at ICCV 2025 DriveX.">
+  <meta property="og:description" content="Project page for HetroD, a drone dataset and benchmark for heterogeneous traffic understanding in autonomous driving.">
   <meta property="og:url" content="https://your-domain.org/HetroD">
   <meta property="og:image" content="static/images/hetrod_banner.png">
   <meta property="og:image:width" content="1200">
@@ -16,17 +16,17 @@
   
   <!-- Twitter -->
   <meta name="twitter:title" content="HetroD: A Drone Dataset for Heterogeneous Traffic">
-  <meta name="twitter:description" content="ICCV 2025 project page for HetroD: Drone dataset and benchmark for autonomous driving research.">
+  <meta name="twitter:description" content="project page for HetroD: Drone dataset and benchmark for autonomous driving research.">
   <meta name="twitter:image" content="static/images/hetrod_twitter_banner.png">
   <meta name="twitter:card" content="summary_large_image">
 
   
   <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="HetroD, drone dataset, heterogeneous traffic, autonomous driving, ICCV 2025 DriveX, benchmark, trajectory prediction, computer vision">
+  <meta name="keywords" content="HetroD, drone dataset, heterogeneous traffic, autonomous driving">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>HetroD: Drone Dataset for Heterogeneous Traffic | ICCV 2025</title>
+  <title>HetroD: Drone Dataset for Heterogeneous Traffic</title>
   <!--   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
   <!--   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" -->
 
@@ -296,11 +296,11 @@
           </a>
         </figure>
         <h2 class="subtitle has-text-justified is-size-5 has-text-grey-dark">
-          HetroD is a high-fidelity, drone dataset that captures unstructured maneuvers such as hook turns, aggressive overtakes, queue
-          cutting, and congested crossings. These maneuvers are critical testing scenarios for the deployment of autonomous driving systems, yet
-          remain underexplored in the community. We construct a benchmark to evaluate existing methods in motion planning, motion prediction,
-          and cross-dataset evaluation of model performance. The benchmark focuses on heterogeneous traffic environments involving dense, fine-
-          grained interactions among vehicles, scooters, cyclists, and pedestrians.
+        HetroD is a high-fidelity, drone dataset that captures unstructured maneuvers such as hook turns, aggressive overtakes, queue
+        cutting, and congested crossings among vehicle, scooters, and pedestrians in heterogeneous traffic environments. These maneuvers are
+        critical for testing autonomous driving systems yet remain underexplored in the community. To address this, we construct a benchmark
+        to evaluate existing methods in motion planning, motion prediction, traffic simulation, and conduct a thorough investigation of their
+        generalization across datasets.
         </h2>
       </div>
     </div>
@@ -323,7 +323,28 @@
           <div class="columns is-centered">
             <div class="column is-10">
               <p class="has-line-height-relaxed">
-                We present HetroD, a dataset and benchmark for developing autonomous driving systems in heterogeneous environments. HetroD targets the critical challenge of navigating real-world traffic dominated by <em>vulnerable road users (VRUs)</em> including pedestrians, cyclists, and motorcyclists alongside vehicles. These mixed agent types exhibit complex behaviors such as hook turns, lane splitting, and informal right-of-way negotiation. Such behaviors pose significant challenges for autonomous vehicles but remain underrepresented in existing datasets focused on structured, lane-disciplined traffic. To bridge the gap, we introduce a large-scale drone-based dataset to provide a holistic observations of traffic scenes with centimeter-accurate annotations, HD maps, and traffic signal states. We further develop a modular toolchain for extracting per-agent scenarios to support seamless development. In total, the dataset compreises over 65.4k high-fidelity agent trajectories, 70% of which are from VRUs. HetroD supports modeling of VRU behaviors in dense, heterogeneous traffic and provides standardized benchmarks for forecasting, planning, and simulation tasks. Evaluation results reveal that state-of-the-art prediction and planning models struggle with the challenges presented by our dataset: they fail to predict lateral VRU movements, cannot handle unstructured maneuvers, and exhibit limited performance in dense and multi-agent scenarios, highlighting the need for more robust approaches to heterogeneous traffic.
+                We present HetroD, a dataset and benchmark
+for developing autonomous driving systems in heterogeneous
+environments. HetroD targets the critical challenge of navigating real-world heterogeneous traffic dominated by vulnerable
+road users (VRUs), including pedestrians, cyclists, motorcyclists, and vehicles. These mixed agent types exhibit complex
+behaviors such as hook turns, lane splitting, and informal
+right-of-way negotiation. Such behaviors pose significant challenges for autonomous vehicles but remain underrepresented
+in existing datasets focused on structured, lane-disciplined
+traffic. To bridge the gap, we collect a large-scale drone-based
+dataset to provide a holistic observations of traffic scenes with
+centimeter-accurate annotations, HD maps, and traffic signal
+states. We further develop a modular toolkit for extracting
+per-agent scenarios to support downstream task development.
+In total, the dataset comprises over 65.4k high-fidelity agent
+trajectories, 70% of which are from VRUs. HetroD supports
+modeling of VRU behaviors in dense, heterogeneous traffic and
+provides standardized benchmarks for forecasting, planning,
+and simulation tasks. Evaluation results reveal that state-
+of-the-art prediction and planning models struggle with the
+challenges presented by our dataset: they fail to predict lateral
+VRU movements, cannot handle unstructured maneuvers, and
+exhibit limited performance in dense and multi-agent scenarios, highlighting the need for more robust approaches to
+heterogeneous traffic.
               </p>
             </div>
           </div>
@@ -599,9 +620,6 @@
       <!-- Statistics table -->
       <div class="mb-5">
         <h4 class="title is-5 has-text-centered mb-4">TABLE I: Comparison of Datasets on Interaction, Density & Diversity Metrics</h4>
-        <p class="subtitle is-6 has-text-centered mb-4 has-text-grey-dark" style="max-width: 1000px; margin: 0 auto;">
-        Interaction Scale<sup>1</sup> is the total number of interactions, computed per dataset by aggregating over all its scenarios and then normalized across datasets. Heterogeneous Interaction Scale<sup>2</sup> counts cross-type interactions with the same per-dataset aggregation and normalization. Geographical Density<sup>3</sup> represents the average number of agents per unit area A within an 8-second window. VRUs<sup>4</sup> denotes the proportion of vulnerable road users among all traffic agents. All metrics except VRUs are min–max normalized to [0,1] across datasets where the metric is available; VRUs is reported in percent.
-        </p>
         <div class="columns is-centered">
           <div class="column">
             <table class="table is-fullwidth is-striped">
@@ -1203,6 +1221,10 @@
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
+
+          <p>
+            For more details, please check our paper.
+          </p>
 
           <p>
             This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
