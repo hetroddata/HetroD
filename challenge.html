@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="HetroD Challenge page for traffic simulation in heterogeneous traffic.">
+  <title>HetroD Challenge - Traffic Simulation</title>
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <style>
+    :root {
+      --challenge-primary: #146c94;
+      --challenge-accent: #1fb6a6;
+      --challenge-soft: #f3fbfb;
+    }
+
+    body {
+      background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+    }
+
+    .challenge-hero {
+      background: linear-gradient(120deg, var(--challenge-primary) 0%, var(--challenge-accent) 100%);
+      color: #fff;
+    }
+
+    .challenge-card {
+      border: 1px solid #e6edf5;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(11, 47, 70, 0.08);
+    }
+
+    .metric-group {
+      border-left: 4px solid var(--challenge-primary);
+      background: var(--challenge-soft);
+      border-radius: 8px;
+      padding: 1rem 1rem 0.75rem 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .leaderboard-highlight {
+      background-color: #eaf9f7;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <section class="hero challenge-hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <p class="is-size-7 has-text-weight-semibold">HetroD Challenge</p>
+        <h1 class="title is-2 has-text-white mb-3">Challenge Proposal: Traffic Simulation in Heterogeneous Traffic (HetroD)</h1>
+        <p class="subtitle is-5 has-text-white-bis mb-5">
+          A benchmark for realistic future trajectory simulation in complex multi-agent urban scenes.
+        </p>
+        <a href="index.html" class="button is-light is-rounded">
+          <span class="icon"><i class="fas fa-arrow-left"></i></span>
+          <span>Back to Home</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="box challenge-card">
+        <h2 class="title is-4">Description</h2>
+        <p class="is-size-6 has-text-grey-dark">
+          This challenge focuses on multi-agent traffic simulation in highly heterogeneous urban environments, based on HetroD dataset.
+          The goal is to evaluate models' ability to predict and simulate realistic future trajectories in complex traffic scenes involving vehicles, scooters, cyclists, and pedestrians.
+        </p>
+      </div>
+
+      <div class="box challenge-card">
+        <h2 class="title is-4">Target</h2>
+        <div class="content is-size-6">
+          <p>
+            Given <strong>1.1 seconds</strong> of historical observations for all agents in a scene,
+            participants are required to predict <strong>8 seconds</strong> of future multi-agent trajectories.
+          </p>
+        </div>
+      </div>
+
+      <div class="box challenge-card">
+        <h2 class="title is-4">Evaluation Metrics</h2>
+
+        <div class="metric-group">
+          <h3 class="title is-6 mb-3">1. Kinematic Realism</h3>
+          <ul>
+            <li>Linear Speed</li>
+            <li>Linear Acceleration</li>
+            <li>Angular Speed</li>
+            <li>Angular Acceleration</li>
+          </ul>
+        </div>
+
+        <div class="metric-group">
+          <h3 class="title is-6 mb-3">2. Safety and Rule Compliance</h3>
+          <ul>
+            <li><strong>Collision Rate</strong> - percentage of trajectories resulting in inter-agent collisions</li>
+            <li><strong>Off-road Rate</strong> - percentage of trajectories leaving the drivable area</li>
+            <li><strong>Traffic Violation Rate</strong> - violations such as red-light running or illegal maneuvers</li>
+          </ul>
+        </div>
+
+        <div class="metric-group">
+          <h3 class="title is-6 mb-3">3. Trajectory Accuracy</h3>
+          <ul>
+            <li>Average ADE (Average Displacement Error)</li>
+            <li>Min ADE</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="box challenge-card">
+        <div class="level">
+          <div class="level-left">
+            <h2 class="title is-4 mb-0">Leaderboard (Template)</h2>
+          </div>
+          <div class="level-right">
+            <span class="tag is-info is-light">Placeholder</span>
+          </div>
+        </div>
+        <p class="is-size-6 has-text-grey-dark mb-4">
+          Add official submissions and scores when the benchmark server is ready.
+        </p>
+
+        <div class="table-container">
+          <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>Method</th>
+                <th>Kinematic Score</th>
+                <th>Safety Score</th>
+                <th>Trajectory Score</th>
+                <th>Overall</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="leaderboard-highlight">
+                <td>1</td>
+                <td>Baseline Team</td>
+                <td>ExampleNet-v1</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Pending</td>
+                <td>Pending</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Pending</td>
+                <td>Pending</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
