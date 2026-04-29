@@ -332,15 +332,46 @@
 <section class="hero is-light">
   <div class="hero-body">
     <div class="container is-widescreen">
-      <div class="box has-background-white has-shadow-hover">
+      <div class="box has-background-white has-shadow-hover" style="border-radius: 18px; overflow: hidden;">
         <div class="has-text-centered mb-5">
           <h2 class="title is-3 has-text-primary">Dataset Processing and Usage</h2>
           <div class="title-underline"></div>
         </div>
-        <div class="content is-size-5 has-text-grey-dark">
-          <p><strong>Commercial use:</strong> The HetroD dataset is free for non-commercial use only. If you are interested in commercial use, please visit <a href="https://levelxdata.com" target="_blank">https://levelxdata.com</a>.</p>
-          <p><strong>Acknowledgment:</strong> The HetroD dataset was processed by leveLXData, and leveLXData's processing pipeline was utilized.</p>
-          <p><strong>Note on scale:</strong> We report the dataset size as over/roughly 65.4k trajectories because counts may change slightly during ongoing quality control.</p>
+
+        <div class="columns is-vcentered is-variable is-6">
+          <div class="column is-one-quarter has-text-centered">
+            <a href="https://levelxdata.com" target="_blank" rel="noopener noreferrer">
+              <img src="https://levelxdata.com/logos/logo_lxd.png" alt="leveLXData" style="max-width: 200px; width: 100%; height: auto;">
+            </a>
+            <p class="is-size-7 has-text-grey mt-3">Data processing partner</p>
+          </div>
+
+          <div class="column">
+            <div class="columns is-variable is-4">
+              <div class="column">
+                <div class="notification has-background-light" style="height: 100%; border-left: 4px solid #3273dc; border-radius: 12px;">
+                  <p class="title is-5 mb-2">Commercial Use</p>
+                  <p class="is-size-6 has-text-grey-dark">
+                    The HetroD dataset is free for non-commercial use only. For commercial use, please visit
+                    <a href="https://levelxdata.com" target="_blank" rel="noopener noreferrer">levelxdata.com</a>.
+                  </p>
+                </div>
+              </div>
+
+              <div class="column">
+                <div class="notification has-background-light" style="height: 100%; border-left: 4px solid #00d1b2; border-radius: 12px;">
+                  <p class="title is-5 mb-2">Acknowledgment</p>
+                  <p class="is-size-6 has-text-grey-dark">
+                    The HetroD dataset was processed by leveLXData's high-quality, real-world trajectory and scenario data processing pipeline.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <p class="is-size-6 has-text-grey-dark mt-3">
+              <strong>Note on scale:</strong> We report the dataset size as over/roughly 65.4k trajectories because counts may change slightly during ongoing quality control.
+            </p>
+          </div>
         </div>
       </div>
     </div>
