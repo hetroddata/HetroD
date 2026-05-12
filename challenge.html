@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="HetroD Challenge page for traffic simulation in heterogeneous traffic.">
-  <title>HetroD Challenge - Traffic Simulation</title>
+  <meta name="description" content="HetroD Challenge page for closed-loop traffic simulation in heterogeneous traffic.">
+  <title>HetroD Challenge - Closed-Loop Heterogeneous Traffic Simulation</title>
 
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
@@ -12,167 +12,629 @@
 
   <style>
     :root {
-      --challenge-primary: #146c94;
-      --challenge-accent: #1fb6a6;
-      --challenge-soft: #f3fbfb;
+      --ink: #13201f;
+      --muted: #5d6c68;
+      --paper: #fbf7ef;
+      --panel: #fffdf8;
+      --line: rgba(28, 56, 51, 0.14);
+      --forest: #143d35;
+      --mint: #7fd1b9;
+      --clay: #e26f4d;
+      --gold: #f3bf59;
+      --sky: #2f80a8;
+      --shadow: 0 24px 60px rgba(20, 61, 53, 0.14);
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(127, 209, 185, 0.36), transparent 34rem),
+        radial-gradient(circle at 85% 8%, rgba(243, 191, 89, 0.26), transparent 28rem),
+        linear-gradient(180deg, #fffaf0 0%, #f6fbf8 48%, #ffffff 100%);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .challenge-nav {
+      padding: 1rem 0;
+    }
+
+    .challenge-nav a {
+      color: var(--forest);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
     }
 
     .challenge-hero {
-      background: linear-gradient(120deg, var(--challenge-primary) 0%, var(--challenge-accent) 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 1.5rem 4rem;
+    }
+
+    .challenge-hero:before {
+      content: "";
+      position: absolute;
+      inset: 1.5rem;
+      border: 1px solid rgba(20, 61, 53, 0.12);
+      border-radius: 34px;
+      pointer-events: none;
+    }
+
+    .eyebrow,
+    .section-kicker,
+    .metric-label,
+    .small-label {
+      color: var(--clay);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      max-width: 940px;
+      margin: 0.35rem auto 1rem;
+      color: var(--forest);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.8rem, 7vw, 5.8rem);
+      line-height: 0.94;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-subtitle {
+      max-width: 820px;
+      margin: 0 auto 2rem;
+      color: var(--muted);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 1.18rem;
+      line-height: 1.65;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .challenge-button {
+      min-width: 180px;
+      border: 0;
+      border-radius: 999px;
+      box-shadow: 0 12px 28px rgba(20, 61, 53, 0.16);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-weight: 800;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .challenge-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(20, 61, 53, 0.2);
+    }
+
+    .button-primary {
+      background: var(--forest);
       color: #fff;
     }
 
-    .challenge-card {
-      border: 1px solid #e6edf5;
-      border-radius: 14px;
-      box-shadow: 0 10px 25px rgba(11, 47, 70, 0.08);
+    .button-primary:hover {
+      color: #fff;
     }
 
-    .metric-group {
-      border-left: 4px solid var(--challenge-primary);
-      background: var(--challenge-soft);
-      border-radius: 8px;
-      padding: 1rem 1rem 0.75rem 1rem;
-      margin-bottom: 1rem;
+    .button-warm {
+      background: var(--clay);
+      color: #fff;
     }
 
-    .leaderboard-highlight {
-      background-color: #eaf9f7;
-      font-weight: 700;
+    .button-warm:hover {
+      color: #fff;
+    }
+
+    .button-soft {
+      background: #fff;
+      color: var(--forest);
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .fact-card,
+    .content-card,
+    .metric-card,
+    .timeline-card {
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(255, 253, 248, 0.86);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .fact-card {
+      padding: 1.15rem;
+      text-align: left;
+    }
+
+    .fact-card strong {
+      display: block;
+      color: var(--forest);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 1.35rem;
+      line-height: 1.1;
+    }
+
+    .fact-card span {
+      color: var(--muted);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 0.92rem;
+    }
+
+    .section-wrap {
+      padding: 2rem 1.5rem;
+    }
+
+    .content-card {
+      height: 100%;
+      padding: 1.65rem;
+    }
+
+    .content-card p,
+    .content-card li,
+    .metric-card p,
+    .metric-card li,
+    .timeline-card p {
+      color: var(--muted);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      line-height: 1.62;
+    }
+
+    .content-card h2,
+    .content-card h3,
+    .metric-card h3,
+    .timeline-card h2 {
+      color: var(--forest);
+      letter-spacing: -0.025em;
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .timeline-card {
+      padding: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-card:after {
+      content: "";
+      position: absolute;
+      right: -2.2rem;
+      top: -2.2rem;
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      background: rgba(127, 209, 185, 0.24);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .metric-card {
+      padding: 1.5rem;
+    }
+
+    .metric-card ul,
+    .content-card ul {
+      margin-left: 1.1rem;
+      margin-top: 0.65rem;
+    }
+
+    .formula {
+      margin-top: 0.85rem;
+      padding: 0.85rem 1rem;
+      border-radius: 16px;
+      background: #163d35;
+      color: #fff;
+      font-family: "Courier New", monospace;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .score-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .score-pill {
+      border-radius: 18px;
+      background: #fff4df;
+      padding: 0.95rem;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+    }
+
+    .score-pill strong {
+      display: block;
+      color: var(--forest);
+      font-size: 1.25rem;
+    }
+
+    .leaderboard-preview {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+    }
+
+    .leaderboard-preview .row {
+      display: grid;
+      grid-template-columns: 0.6fr 1.6fr 1fr 1fr;
+      gap: 0.75rem;
+      padding: 0.95rem 1rem;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .leaderboard-preview .row:first-child {
+      background: var(--forest);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .leaderboard-preview .row:last-child {
+      border-bottom: 0;
+    }
+
+    .status-note {
+      border-left: 5px solid var(--gold);
+      border-radius: 18px;
+      background: #fff8e9;
+      padding: 1rem 1.2rem;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      color: var(--muted);
+    }
+
+    .footer-note {
+      padding: 3rem 1.5rem 4rem;
+      color: var(--muted);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 900px) {
+      .hero-facts,
+      .timeline-grid,
+      .metric-grid,
+      .score-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .challenge-hero {
+        padding-top: 3rem;
+      }
+
+      .leaderboard-preview .row {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <section class="hero challenge-hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <p class="is-size-7 has-text-weight-semibold">HetroD Challenge</p>
-        <h1 class="title is-2 has-text-white mb-3">Traffic Simulation in Heterogeneous Traffic</h1>
-        <p class="subtitle is-5 has-text-white-bis mb-5">
-          A benchmark for realistic future trajectory simulation in complex multi-agent urban scenes.
-        </p>
-        <a href="index.html" class="button is-light is-rounded">
-          <span class="icon"><i class="fas fa-arrow-left"></i></span>
-          <span>Back to Home</span>
+  <nav class="challenge-nav">
+    <div class="container is-max-widescreen px-4">
+      <a href="index.html">
+        <span class="icon"><i class="fas fa-arrow-left"></i></span>
+        <span>Back to HetroD</span>
+      </a>
+    </div>
+  </nav>
+
+  <header class="challenge-hero has-text-centered">
+    <div class="container is-max-widescreen">
+      <p class="eyebrow">HetroD Challenge 2026</p>
+      <h1 class="hero-title">Closed-Loop Simulation for Heterogeneous Traffic</h1>
+      <p class="hero-subtitle">
+        Generate realistic 6-second closed-loop rollouts for dense scenes with vehicles, two-wheelers, and pedestrians. The benchmark focuses on interaction realism, VRU safety, and type-aware behavior.
+      </p>
+
+      <div class="action-row">
+        <a href="#dataset" class="button challenge-button button-primary is-medium">
+          <span class="icon"><i class="fas fa-download"></i></span>
+          <span>Dataset Download</span>
+        </a>
+        <a href="#submission" class="button challenge-button button-warm is-medium">
+          <span class="icon"><i class="fas fa-upload"></i></span>
+          <span>Submit Results</span>
+        </a>
+        <a href="#leaderboard" class="button challenge-button button-soft is-medium">
+          <span class="icon"><i class="fas fa-trophy"></i></span>
+          <span>View Leaderboard</span>
         </a>
       </div>
-    </div>
-  </section>
 
-  <section class="section">
-    <div class="container is-max-desktop">
-      <div class="box challenge-card">
-        <h2 class="title is-4">Description</h2>
-        <p class="is-size-6 has-text-grey-dark">
-          This challenge focuses on multi-agent traffic simulation in highly heterogeneous urban environments, based on HetroD dataset.
-          The goal is to evaluate models' ability to predict and simulate realistic future trajectories in complex traffic scenes involving vehicles, scooters, cyclists, and pedestrians.
-        </p>
+      <div class="hero-facts">
+        <div class="fact-card">
+          <strong>Jun 1</strong>
+          <span>Challenge opens</span>
+        </div>
+        <div class="fact-card">
+          <strong>Sep 1</strong>
+          <span>Challenge closes and leaderboard is released</span>
+        </div>
+        <div class="fact-card">
+          <strong>6 sec</strong>
+          <span>Closed-loop rollout horizon</span>
+        </div>
+        <div class="fact-card">
+          <strong>1</strong>
+          <span>Final test submission per team</span>
+        </div>
       </div>
+    </div>
+  </header>
 
-      <div class="box challenge-card">
-        <h2 class="title is-4">Target</h2>
-        <div class="content is-size-6">
+  <main>
+    <section class="section-wrap">
+      <div class="container is-max-widescreen">
+        <div class="columns is-variable is-5">
+          <div class="column is-two-fifths">
+            <div class="content-card">
+              <p class="section-kicker">Overview</p>
+              <h2 class="title is-3">A benchmark for traffic that is not vehicle-only.</h2>
+              <p>
+                The HetroD Challenge evaluates whether simulation models can reproduce heterogeneous urban traffic where vehicles, scooters, cyclists, and pedestrians interact in close proximity.
+              </p>
+              <p>
+                Participants submit rollout results on the hidden test split. The final leaderboard is computed by the organizers and displayed on September 1.
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="content-card">
+              <p class="section-kicker">Goals and Expected Outcomes</p>
+              <h2 class="title is-3">Realistic, safe, and type-aware simulation.</h2>
+              <ul>
+                <li>Advance closed-loop multi-agent simulation in dense heterogeneous traffic.</li>
+                <li>Measure realism with WOSAC-style simulation metrics while avoiding vehicle-centric bias.</li>
+                <li>Highlight VRU-aware interaction failures, including collisions and cross-type time-to-collision risks.</li>
+                <li>Provide a clear public benchmark for future trajectory and traffic simulation research.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrap">
+      <div class="container is-max-widescreen">
+        <div class="timeline-grid">
+          <div class="timeline-card">
+            <p class="small-label">Start</p>
+            <h2 class="title is-4">June 1, 2026</h2>
+            <p>Dataset access, validation tools, and submission instructions become available.</p>
+          </div>
+          <div class="timeline-card">
+            <p class="small-label">Development</p>
+            <h2 class="title is-4">June 1 - September 1</h2>
+            <p>Participants train on the train split, validate with ground truth, and prepare one final hidden-test rollout submission.</p>
+          </div>
+          <div class="timeline-card">
+            <p class="small-label">Release</p>
+            <h2 class="title is-4">September 1, 2026</h2>
+            <p>The challenge closes and the official leaderboard is displayed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="task" class="section-wrap">
+      <div class="container is-max-widescreen">
+        <div class="columns is-variable is-5">
+          <div class="column">
+            <div class="content-card">
+              <p class="section-kicker">Task Definition</p>
+              <h2 class="title is-3">Generate 6-second closed-loop rollouts.</h2>
+              <p>
+                Given an initial heterogeneous traffic scene, participants must generate future multi-agent rollouts for vehicles, two-wheelers, and pedestrians. Rollouts should preserve realistic kinematics, plausible interactions, and valid map-region behavior.
+              </p>
+              <ul>
+                <li>Output: closed-loop trajectories for all required agents.</li>
+                <li>Horizon: 6 seconds.</li>
+                <li>Evaluation: realism, interaction safety, region validity, and trajectory accuracy.</li>
+              </ul>
+            </div>
+          </div>
+          <div id="dataset" class="column">
+            <div class="content-card">
+              <p class="section-kicker">Dataset and Splits</p>
+              <h2 class="title is-3">Train and validation include ground truth.</h2>
+              <ul>
+                <li><strong>Train:</strong> includes ground-truth trajectories for model training.</li>
+                <li><strong>Validation:</strong> includes ground truth for local development and ablation.</li>
+                <li><strong>Test:</strong> ground truth is hidden. Participants submit rollout results in the required format.</li>
+              </ul>
+              <div class="status-note mt-4">
+                Dataset download instructions will be linked here when the official release opens on June 1.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="submission" class="section-wrap">
+      <div class="container is-max-widescreen">
+        <div class="content-card">
+          <p class="section-kicker">Submission</p>
+          <h2 class="title is-3">Submit one final test rollout file.</h2>
+          <div class="columns is-variable is-5">
+            <div class="column">
+              <p>
+                The test split has no public ground truth. Participants must submit generated 6-second closed-loop rollout results using the official submission format.
+              </p>
+            </div>
+            <div class="column">
+              <ul>
+                <li>Only one final test submission is allowed per team.</li>
+                <li>The leaderboard is hidden during the challenge period.</li>
+                <li>Official scores and rankings are displayed on September 1.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="action-row mt-4 mb-0">
+            <a href="#submission" class="button challenge-button button-warm is-medium">
+              <span class="icon"><i class="fas fa-file-upload"></i></span>
+              <span>Submission Portal Coming Soon</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="metrics" class="section-wrap">
+      <div class="container is-max-widescreen">
+        <div class="content-card mb-5">
+          <p class="section-kicker">Evaluation Metrics</p>
+          <h2 class="title is-3">WOSAC realism, adapted for heterogeneous traffic.</h2>
           <p>
-            Given <strong>1.1 seconds</strong> of historical observations for all agents in a scene,
-            participants are required to predict <strong>8 seconds</strong> of future multi-agent trajectories.
+            HetroD keeps the WOSAC simulation-realism structure, then adds VRU-aware and type-aware modifications so scooters, cyclists, and pedestrians are not diluted by vehicle-dominant distributions.
           </p>
-        </div>
-      </div>
-
-      <div class="box challenge-card">
-        <h2 class="title is-4">Evaluation Metrics</h2>
-
-        <div class="metric-group">
-          <h3 class="title is-6 mb-3">1. Kinematic Realism</h3>
-          <ul>
-            <li>Linear Speed</li>
-            <li>Linear Acceleration</li>
-            <li>Angular Speed</li>
-            <li>Angular Acceleration</li>
-          </ul>
-        </div>
-
-        <div class="metric-group">
-          <h3 class="title is-6 mb-3">2. Safety and Rule Compliance</h3>
-          <ul>
-            <li><strong>Collision Rate</strong> - percentage of trajectories resulting in inter-agent collisions</li>
-            <li><strong>Off-road Rate</strong> - percentage of trajectories leaving the drivable area</li>
-            <li><strong>Traffic Violation Rate</strong> - violations such as red-light running or illegal maneuvers</li>
-          </ul>
-        </div>
-
-        <div class="metric-group">
-          <h3 class="title is-6 mb-3">3. Trajectory Accuracy</h3>
-          <ul>
-            <li>Average ADE (Average Displacement Error)</li>
-            <li>Min ADE</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="box challenge-card">
-        <div class="level">
-          <div class="level-left">
-            <h2 class="title is-4 mb-0">Leaderboard (Template)</h2>
+          <div class="score-strip">
+            <div class="score-pill">
+              <strong>0.25</strong>
+              Kinematic
+            </div>
+            <div class="score-pill">
+              <strong>0.40</strong>
+              Interaction
+            </div>
+            <div class="score-pill">
+              <strong>0.20</strong>
+              Region
+            </div>
+            <div class="score-pill">
+              <strong>0.15</strong>
+              Trajectory
+            </div>
           </div>
-          <div class="level-right">
-            <span class="tag is-info is-light">Placeholder</span>
+          <div class="formula">Overall = 0.25 Kinematic + 0.40 Interaction + 0.20 Region + 0.15 Trajectory</div>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric-card">
+            <p class="metric-label">1. Kinematic Score</p>
+            <h3 class="title is-4">Balanced by agent type.</h3>
+            <ul>
+              <li>Linear Speed</li>
+              <li>Linear Acceleration</li>
+              <li>Angular Speed</li>
+              <li>Angular Acceleration</li>
+            </ul>
+            <div class="formula">Compute each metric by type:
+Vehicle / Two-wheeler / Pedestrian
+Then report a balanced average.</div>
+          </div>
+
+          <div class="metric-card">
+            <p class="metric-label">2. Interaction Score</p>
+            <h3 class="title is-4">VRU-aware and cross-type safety.</h3>
+            <ul>
+              <li>Distance to Nearest Object</li>
+              <li>Overall + VRU Collision</li>
+              <li>Overall + Cross-type TTC</li>
+            </ul>
+            <div class="formula">Collision Score = 0.5 Overall Collision + 0.5 VRU Collision
+TTC Score = 0.5 Overall TTC + 0.5 Cross-type TTC
+Interaction Score = mean(Distance, Collision Score, TTC Score)</div>
+          </div>
+
+          <div class="metric-card">
+            <p class="metric-label">3. Region / Map Score</p>
+            <h3 class="title is-4">Valid regions depend on agent type.</h3>
+            <ul>
+              <li>Type-aware Distance to Valid Region</li>
+              <li>Type-aware Invalid Region Rate</li>
+            </ul>
+            <div class="formula">Vehicle: drivable area
+Two-wheeler: drivable area + road-edge buffer
+Pedestrian: sidewalk / crosswalk / pedestrian region
+If pedestrian map labels are unreliable, pedestrian region metrics are diagnostic only.</div>
+          </div>
+
+          <div class="metric-card">
+            <p class="metric-label">4. Trajectory Score</p>
+            <h3 class="title is-4">Simple accuracy indicators.</h3>
+            <ul>
+              <li>ADE</li>
+              <li>minADE</li>
+              <li>Vehicle ADE</li>
+              <li>Two-wheeler ADE</li>
+              <li>Pedestrian ADE</li>
+            </ul>
           </div>
         </div>
-        <p class="is-size-6 has-text-grey-dark mb-4">
-          Add official submissions and scores when the benchmark server is ready.
-        </p>
+      </div>
+    </section>
 
-        <div class="table-container">
-          <table class="table is-fullwidth is-striped is-hoverable">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Team</th>
-                <th>Method</th>
-                <th>Kinematic Score</th>
-                <th>Safety Score</th>
-                <th>Trajectory Score</th>
-                <th>Overall</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="leaderboard-highlight">
-                <td>1</td>
-                <td>Baseline Team</td>
-                <td>ExampleNet-v1</td>
-                <td>--</td>
-                <td>--</td>
-                <td>--</td>
-                <td>--</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Pending</td>
-                <td>Pending</td>
-                <td>--</td>
-                <td>--</td>
-                <td>--</td>
-                <td>--</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Pending</td>
-                <td>Pending</td>
-                <td>--</td>
-                <td>--</td>
-                <td>--</td>
-                <td>--</td>
-              </tr>
-            </tbody>
-          </table>
+    <section id="leaderboard" class="section-wrap">
+      <div class="container is-max-widescreen">
+        <div class="content-card">
+          <div class="columns is-vcentered is-variable is-5">
+            <div class="column is-two-fifths">
+              <p class="section-kicker">Leaderboard</p>
+              <h2 class="title is-3">Hidden until September 1.</h2>
+              <p>
+                Rankings will be computed from the hidden test set after the submission deadline. The public leaderboard will display overall score and category scores.
+              </p>
+            </div>
+            <div class="column">
+              <div class="leaderboard-preview">
+                <div class="row">
+                  <span>Rank</span>
+                  <span>Team</span>
+                  <span>Overall</span>
+                  <span>Status</span>
+                </div>
+                <div class="row">
+                  <span>-</span>
+                  <span>Leaderboard opens Sep 1</span>
+                  <span>-</span>
+                  <span>Hidden</span>
+                </div>
+                <div class="row">
+                  <span>-</span>
+                  <span>Official test submissions</span>
+                  <span>-</span>
+                  <span>Pending</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
+
+  <footer class="footer-note">
+    <p>HetroD Challenge 2026. For dataset access, submission format, and challenge updates, check this page after the June 1 opening.</p>
+  </footer>
 </body>
 </html>
