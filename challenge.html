@@ -305,6 +305,44 @@
       margin-top: 0;
     }
 
+    .leaderboard-preview {
+      margin-top: 1.25rem;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .leaderboard-preview table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    .leaderboard-preview th,
+    .leaderboard-preview td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .leaderboard-preview th {
+      background: #eef4f8;
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .leaderboard-preview tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .leaderboard-preview .oracle-row td {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
     .status-note {
       border-left: 4px solid var(--primary);
       border-radius: 8px;
@@ -382,7 +420,15 @@
       <div class="action-row">
         <a href="https://github.com/bob020416/HetroD-Challenge-v1.0-Evaluation" target="_blank" rel="noopener" class="button challenge-button button-primary is-medium">
           <span class="icon"><i class="fab fa-github"></i></span>
-          <span>GitHub / Download Evaluator</span>
+          <span>GitHub</span>
+        </a>
+        <a href="#dataset" class="button challenge-button button-warm is-medium">
+          <span class="icon"><i class="fas fa-download"></i></span>
+          <span>Download Dataset</span>
+        </a>
+        <a href="https://forms.gle/L9mcG5TQMa3mkhr7A" target="_blank" rel="noopener" class="button challenge-button button-soft is-medium">
+          <span class="icon"><i class="fas fa-upload"></i></span>
+          <span>Submission</span>
         </a>
       </div>
     </div>
@@ -481,6 +527,9 @@
           <p>
             The public package contains ScenarioNet inputs and WOSAC-style GT pickles for train and validation; the test package contains inputs only.
           </p>
+          <div class="status-note mt-4">
+            The HetroD Challenge dataset may only be used for this challenge. Any other use or redistribution may result in disqualification from the submission and leaderboard.
+          </div>
           <pre class="formula code-block"><code>HetroD-Challenge-v1.0-public/
   train/{gt,scenarionet}/
   valid/{gt,scenarionet}/
@@ -600,7 +649,73 @@ Overall = Base + Coverage Bonus</div>
             <li><code>simulated_states</code> should store future steps 11..90 as <code>(x, y, z, yaw)</code>.</li>
           </ul>
           <div class="status-note mt-4">
-            Please fill out the Google submission form before <strong>September 5, 2026 AoE</strong>.
+            Please fill out the Google submission form before <strong>September 5, 2026 AoE</strong>:
+            <a href="https://forms.gle/L9mcG5TQMa3mkhr7A" target="_blank" rel="noopener">https://forms.gle/L9mcG5TQMa3mkhr7A</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="leaderboard" class="section-wrap">
+      <div class="container is-max-widescreen">
+        <div class="content-card">
+          <p class="section-kicker">Leaderboard</p>
+          <h2 class="title is-3">Placeholder leaderboard for hidden test evaluation.</h2>
+          <p>
+            Official rankings will report only the overall score and four major metric groups.
+          </p>
+          <div class="leaderboard-preview">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Team</th>
+                  <th>Overall</th>
+                  <th>Kinematic</th>
+                  <th>Safety</th>
+                  <th>Cross-type</th>
+                  <th>Coverage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="oracle-row">
+                  <td>Oracle</td>
+                  <td>GT Reference</td>
+                  <td>0.897</td>
+                  <td>1.000</td>
+                  <td>0.992</td>
+                  <td>1.000</td>
+                  <td>0.000</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>Team Placeholder</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Team Placeholder</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Team Placeholder</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
