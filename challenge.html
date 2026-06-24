@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="HetroD Challenge page for closed-loop traffic simulation in heterogeneous traffic.">
-  <title>HetroD Challenge - Closed-Loop Heterogeneous Traffic Simulation</title>
+  <meta name="description" content="HetroD Challenge v1.0 evaluation page.">
+  <title>HetroD Challenge v1.0 Evaluation</title>
 
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
@@ -125,8 +125,7 @@
       color: var(--primary-dark);
     }
 
-    .content-card,
-    .leaderboard-preview {
+    .content-card {
       border: 1px solid var(--line);
       border-radius: 12px;
       background: var(--panel);
@@ -143,8 +142,7 @@
     }
 
     .content-card p,
-    .content-card li,
-    .leaderboard-preview {
+    .content-card li {
       color: var(--muted);
       line-height: 1.62;
     }
@@ -307,39 +305,6 @@
       margin-top: 0;
     }
 
-    .leaderboard-preview {
-      margin-top: 1.25rem;
-      overflow: hidden;
-    }
-
-    .leaderboard-scroll {
-      overflow-x: auto;
-    }
-
-    .leaderboard-preview .row {
-      display: grid;
-      min-width: 900px;
-      grid-template-columns: 0.55fr 2fr repeat(5, 1fr) 1fr;
-      gap: 0.75rem;
-      padding: 0.95rem 1rem;
-      border-bottom: 1px solid var(--line);
-      background: #fff;
-    }
-
-    .leaderboard-preview .row:first-child {
-      background: #eef4f8;
-      color: var(--ink);
-      font-weight: 800;
-    }
-
-    .leaderboard-preview .row:not(:first-child) {
-      color: var(--muted);
-    }
-
-    .leaderboard-preview .row:last-child {
-      border-bottom: 0;
-    }
-
     .status-note {
       border-left: 4px solid var(--primary);
       border-radius: 8px;
@@ -402,42 +367,22 @@
         padding-top: 3rem;
       }
 
-      .leaderboard-preview .row {
-        grid-template-columns: 1fr;
-      }
     }
   </style>
 </head>
 <body>
-  <nav class="challenge-nav">
-    <div class="container is-max-widescreen px-4">
-      <a href="index.html">
-        <span class="icon"><i class="fas fa-arrow-left"></i></span>
-        <span>Back to HetroD</span>
-      </a>
-    </div>
-  </nav>
-
   <header class="challenge-hero has-text-centered">
     <div class="container is-max-widescreen">
-      <p class="eyebrow">HetroD Challenge 2026</p>
-      <h1 class="hero-title">Closed-Loop Simulation for Heterogeneous Traffic</h1>
+      <p class="eyebrow">ECCV 2026 DriveX · HetroD Challenge v1.0</p>
+      <h1 class="hero-title">Generating Realistic Heterogeneous Closed-Loop Traffic Simulation</h1>
       <p class="hero-subtitle">
-        Generate realistic 8-second closed-loop rollouts for dense scenes with vehicles, two-wheelers, and pedestrians. The benchmark focuses on interaction realism, VRU safety, and type-aware behavior.
+        HetroD Challenge asks participants to generate realistic 8-second closed-loop traffic rollouts for mixed urban scenes with vehicles, two-wheelers, and pedestrians. The official evaluator measures kinematic realism, safety, cross-type interaction, and rollout coverage.
       </p>
 
       <div class="action-row">
-        <a href="#dataset" class="button challenge-button button-primary is-medium">
-          <span class="icon"><i class="fas fa-download"></i></span>
-          <span>Dataset Download</span>
-        </a>
-        <a href="#submission" class="button challenge-button button-warm is-medium">
-          <span class="icon"><i class="fas fa-upload"></i></span>
-          <span>Submit Results</span>
-        </a>
-        <a href="#leaderboard" class="button challenge-button button-soft is-medium">
-          <span class="icon"><i class="fas fa-trophy"></i></span>
-          <span>View Leaderboard</span>
+        <a href="https://github.com/bob020416/HetroD-Challenge-v1.0-Evaluation" target="_blank" rel="noopener" class="button challenge-button button-primary is-medium">
+          <span class="icon"><i class="fab fa-github"></i></span>
+          <span>GitHub / Download Evaluator</span>
         </a>
       </div>
     </div>
@@ -450,38 +395,37 @@
           <div class="challenge-brief">
             <div>
               <div class="brief-group">
-                <p class="section-kicker">Overview</p>
-                <h2 class="title is-3">A benchmark for traffic that is not vehicle-only.</h2>
+                <p class="section-kicker">Challenge Overview</p>
+                <h2 class="title is-3">A heterogeneous traffic simulation benchmark for ECCV 2026 DriveX.</h2>
                 <p>
-                  The HetroD Challenge evaluates whether simulation models can reproduce heterogeneous urban traffic where vehicles, scooters, cyclists, and pedestrians interact in close proximity.
+                  HetroD Challenge v1.0 focuses on generating realistic heterogeneous closed-loop traffic simulation in dense urban scenes.
                 </p>
                 <p>
-                  Participants submit rollout results on the hidden test split. The final leaderboard is computed by the organizers and displayed on September 1.
+                  The benchmark emphasizes mixed-agent interaction, vulnerable road-user safety, and type-balanced evaluation instead of vehicle-only performance.
                 </p>
-              </div>
-
-              <div class="brief-group">
-                <p class="section-kicker">Goals and Expected Outcomes</p>
-                <h2 class="title is-3">Realistic, safe, and type-aware simulation.</h2>
                 <ul class="brief-list">
-                  <li>Advance closed-loop multi-agent simulation in dense heterogeneous traffic.</li>
-                  <li>Measure realism with WOSAC-style simulation metrics while avoiding vehicle-centric bias.</li>
-                  <li>Highlight VRU-aware interaction failures, including collisions and cross-type time-to-collision risks.</li>
-                  <li>Provide a clear public benchmark for future trajectory and traffic simulation research.</li>
+                  <li>Closed-loop rollout generation for vehicles, two-wheelers, and pedestrians.</li>
+                  <li>Hidden test evaluation with official HetroD metrics built on fast WOSAC.</li>
+                  <li>Submission deadline: September 5, 2026 AoE.</li>
                 </ul>
               </div>
 
               <div class="brief-group">
-                <p class="section-kicker">Task Definition</p>
-                <h2 class="title is-3">Generate 8-second closed-loop rollouts.</h2>
-                <p>
-                  Given an initial heterogeneous traffic scene, participants must generate future multi-agent rollouts for vehicles, two-wheelers, and pedestrians. Rollouts should preserve realistic kinematics, plausible interactions, and valid map-region behavior.
-                </p>
+                <p class="section-kicker">Public Package</p>
+                <h2 class="title is-3">Train and validation GT are public; test GT is hidden.</h2>
                 <ul class="brief-list">
-                  <li>Output: closed-loop trajectories for all required agents.</li>
-                  <li>Horizon: 80 future steps at 10 Hz, equivalent to 8 seconds.</li>
-                  <li>Evaluation: realism, interaction safety, region validity, and trajectory accuracy.</li>
+                  <li><strong>Train:</strong> 5087 scenarios with WOSAC-style GT and ScenarioNet inputs.</li>
+                  <li><strong>Validation:</strong> 955 scenarios with WOSAC-style GT and ScenarioNet inputs.</li>
+                  <li><strong>Test:</strong> 955 ScenarioNet-compatible inputs with future targets masked.</li>
                 </ul>
+              </div>
+
+              <div class="brief-group">
+                <p class="section-kicker">Submission</p>
+                <h2 class="title is-3">Submit one zipped folder of test rollouts.</h2>
+                <p>
+                  Each submitted pickle must contain all required agents from <code>metadata.required_agent_ids</code> and 80 future steps in global <code>(x, y, z, yaw)</code> coordinates.
+                </p>
               </div>
             </div>
 
@@ -494,34 +438,34 @@
       </div>
     </section>
 
-    <section class="section-wrap">
+    <section id="timeline" class="section-wrap">
       <div class="container is-max-widescreen">
         <div class="content-card">
           <p class="section-kicker">Challenge Timeline</p>
-          <h2 class="title is-3">One development window and one final release.</h2>
+          <h2 class="title is-3">Submit before the final deadline.</h2>
           <div class="timeline-block">
             <div class="timeline-step">
               <div class="timeline-marker">1</div>
               <div>
-                <p class="small-label">Start</p>
-                <h2 class="title is-4">July 1, 2026</h2>
-                <p>Dataset access, validation tools, and submission instructions become available.</p>
+                <p class="small-label">Develop</p>
+                <h2 class="title is-4">Train + validation</h2>
+                <p>Use the public split and the GitHub evaluator for local validation.</p>
               </div>
             </div>
             <div class="timeline-step">
               <div class="timeline-marker">2</div>
               <div>
-                <p class="small-label">Development</p>
-                <h2 class="title is-4">July 1 - September 1</h2>
-                <p>Participants train on the train split, validate with ground truth, and prepare one final hidden-test rollout submission.</p>
+                <p class="small-label">Submit</p>
+                <h2 class="title is-4">September 5, 2026 AoE</h2>
+                <p>Zip the test rollout folder and fill out the Google submission form.</p>
               </div>
             </div>
             <div class="timeline-step">
               <div class="timeline-marker">3</div>
               <div>
-                <p class="small-label">Release</p>
-                <h2 class="title is-4">September 1, 2026</h2>
-                <p>The challenge closes and the official leaderboard is displayed.</p>
+                <p class="small-label">Score</p>
+                <h2 class="title is-4">Hidden test evaluation</h2>
+                <p>The organizers compute the final score with hidden test GT.</p>
               </div>
             </div>
           </div>
@@ -532,21 +476,17 @@
     <section id="dataset" class="section-wrap">
       <div class="container is-max-widescreen">
         <div class="content-card">
-          <p class="section-kicker">Dataset and Splits</p>
-          <h2 class="title is-3">HetroD train, validation, and test in ScenarioNet format.</h2>
+          <p class="section-kicker">Files</p>
+          <h2 class="title is-3">Public data and evaluator layout.</h2>
           <p>
-            We provide HetroD scenes in the <a href="https://scenarionet.readthedocs.io/en/latest/" target="_blank" rel="noopener">ScenarioNet</a> format, which defines a unified traffic scenario description with HD maps and object annotations.
+            The public package contains ScenarioNet inputs and WOSAC-style GT pickles for train and validation; the test package contains inputs only.
           </p>
-          <ul>
-            <li><strong>Train:</strong> includes ground-truth trajectories for model training.</li>
-            <li><strong>Validation:</strong> includes ground truth for local development and ablation.</li>
-            <li><strong>Test:</strong> ground truth is hidden. Participants submit rollout results in the required format.</li>
-          </ul>
-          <div class="status-note mt-4">
-            Dataset download:
-            <a href="#" aria-disabled="true">HetroD ScenarioNet package coming soon</a>.
-            The train, validation, and test package links will be activated when the official release opens on July 1.
-          </div>
+          <pre class="formula code-block"><code>HetroD-Challenge-v1.0-public/
+  train/{gt,scenarionet}/
+  valid/{gt,scenarionet}/
+  test/input/
+  manifests/
+  split_summary.json</code></pre>
         </div>
       </div>
     </section>
@@ -555,35 +495,37 @@
       <div class="container is-max-widescreen">
         <div class="content-card">
           <p class="section-kicker">Evaluation Metrics</p>
-          <h2 class="title is-3">WOSAC realism, adapted for heterogeneous traffic.</h2>
+          <h2 class="title is-3">Type-balanced metrics for heterogeneous interaction.</h2>
           <p>
-            HetroD keeps the WOSAC simulation-realism structure, then adds VRU-aware and type-aware modifications so scooters, cyclists, and pedestrians are not diluted by vehicle-dominant distributions.
+            The official score combines kinematic realism, safety, cross-type interaction, and a quality-gated coverage bonus.
           </p>
           <div class="score-strip">
             <div class="score-pill">
-              <strong>0.25</strong>
+              <strong>0.30</strong>
               Kinematic
             </div>
             <div class="score-pill">
-              <strong>0.40</strong>
-              Interaction
+              <strong>0.35</strong>
+              Safety
             </div>
             <div class="score-pill">
-              <strong>0.20</strong>
-              Region
+              <strong>0.25</strong>
+              Cross-type
             </div>
             <div class="score-pill">
-              <strong>0.15</strong>
-              Trajectory
+              <strong>0.10</strong>
+              Coverage bonus
             </div>
           </div>
-          <div class="formula">Overall = 0.25 Kinematic + 0.40 Interaction + 0.20 Region + 0.15 Trajectory</div>
+          <div class="formula">Base = 0.30 Kinematic + 0.35 Safety + 0.25 Cross-type
+Coverage Bonus = 0.10 * Coverage * Kinematic * Safety
+Overall = Base + Coverage Bonus</div>
 
           <div class="metric-summary">
             <div class="metric-row">
               <div>
-                <p class="metric-label">1. Kinematic Score</p>
-                <h3 class="title is-4">Balanced by agent type.</h3>
+                <p class="metric-label">1. Kinematic</p>
+                <h3 class="title is-4">WOSAC-style realism by type.</h3>
               </div>
               <ul>
                 <li>Linear Speed</li>
@@ -591,54 +533,44 @@
                 <li>Angular Speed</li>
                 <li>Angular Acceleration</li>
               </ul>
-              <div class="formula">Compute each metric by type:
-Vehicle / Two-wheeler / Pedestrian
-Then report a balanced average.</div>
+              <div class="formula">Each metric is computed for vehicle, two-wheeler, and pedestrian, then macro-averaged.</div>
             </div>
 
             <div class="metric-row">
               <div>
-                <p class="metric-label">2. Interaction Score</p>
-                <h3 class="title is-4">VRU-aware and cross-type safety.</h3>
+                <p class="metric-label">2. Safety</p>
+                <h3 class="title is-4">Collision and valid region behavior.</h3>
               </div>
               <ul>
-                <li>Distance to Nearest Object</li>
-                <li>Overall + VRU Collision</li>
-                <li>Overall + Cross-type TTC</li>
+                <li>Collision with 0.1 m annotation tolerance</li>
+                <li>Type-aware valid region margin</li>
               </ul>
-              <div class="formula">Collision Score = 0.5 Overall Collision + 0.5 VRU Collision
-TTC Score = 0.5 Overall TTC + 0.5 Cross-type TTC
-Interaction Score = mean(Distance, Collision Score, TTC Score)</div>
+              <div class="formula">Safety = 0.5 Collision + 0.5 Valid Region</div>
             </div>
 
             <div class="metric-row">
               <div>
-                <p class="metric-label">3. Region / Map Score</p>
-                <h3 class="title is-4">Valid regions depend on agent type.</h3>
+                <p class="metric-label">3. Cross-type Interaction</p>
+                <h3 class="title is-4">Close-range heterogeneous behavior.</h3>
               </div>
               <ul>
-                <li>Type-aware Distance to Valid Region</li>
-                <li>Type-aware Invalid Region Rate</li>
+                <li>Cross-type distance proximity to GT</li>
+                <li>Cross-type time-to-proximity proximity to GT</li>
               </ul>
-              <div class="formula">Vehicle: drivable area
-Two-wheeler: drivable area + road-edge buffer
-Pedestrian: sidewalk / crosswalk / pedestrian region
-If pedestrian map labels are unreliable, pedestrian region metrics are diagnostic only.</div>
+              <div class="formula">Only unique vehicle-pedestrian, vehicle-two-wheeler, and pedestrian-two-wheeler pairs are used.</div>
             </div>
 
             <div class="metric-row">
               <div>
-                <p class="metric-label">4. Trajectory Score</p>
-                <h3 class="title is-4">Simple accuracy indicators.</h3>
+                <p class="metric-label">4. Coverage</p>
+                <h3 class="title is-4">Multi-rollout occupancy diversity.</h3>
               </div>
               <ul>
-                <li>ADE</li>
-                <li>minADE</li>
-                <li>Vehicle ADE</li>
-                <li>Two-wheeler ADE</li>
-                <li>Pedestrian ADE</li>
+                <li>Rasterized BEV occupancy</li>
+                <li>Type-wise average</li>
+                <li>Quality-gated bonus</li>
               </ul>
-              <div class="formula">Trajectory Score reports ADE, minADE, and type-specific ADE for vehicle, two-wheeler, and pedestrian agents.</div>
+              <div class="formula">Coverage rewards diverse valid rollouts without rewarding unsafe or unrealistic spread.</div>
             </div>
           </div>
         </div>
@@ -650,96 +582,25 @@ If pedestrian map labels are unreliable, pedestrian region metrics are diagnosti
         <div class="content-card">
           <p class="section-kicker">Submission</p>
           <h2 class="title is-3">Submit one folder of scenario-level PKL files.</h2>
-          <div class="columns is-variable is-5">
-            <div class="column">
-              <p>
-                The test split has no public ground truth. Participants submit one folder containing generated 8-second closed-loop rollout results for all required scenarios.
-              </p>
-            </div>
-            <div class="column">
-              <ul>
-                <li>Only one final test submission is allowed per team.</li>
-                <li>The leaderboard is hidden during the challenge period.</li>
-                <li>Official scores and rankings are displayed on September 1.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="brief-group">
-            <p class="metric-label">HetroD WOSAC Submission Format</p>
-            <p>
-              Upload one folder containing one <code>.pkl</code> file per ScenarioNet scenario. Each filename must match its scenario id.
-            </p>
-            <pre class="formula code-block"><code>&lt;scenario_id&gt;.pkl
-
-Example:
-00_loc18_seg10_ego_1.pkl</code></pre>
-            <p class="mt-4">
-              Sample file:
-              <a href="static/pkl/00_loc18_seg10_ego_1.pkl" download>00_loc18_seg10_ego_1.pkl</a>
-            </p>
-
-            <pre class="formula code-block"><code>{
-    "agent_id": np.ndarray,          # shape: [A], dtype: int64 or int32
-    "simulated_states": np.ndarray,  # shape: [32, A, 80, 4], dtype: float32
-}</code></pre>
-
-            <ul>
-              <li><code>agent_id</code> must exactly match the provided per-scenario evaluation agent list. Do not add extra tracks or omit required agents.</li>
-              <li><code>simulated_states[:, i, :, :]</code> corresponds to <code>agent_id[i]</code>.</li>
-              <li>The last dimension is <code>[x, y, z, yaw]</code>, with positions in meters and yaw in radians.</li>
-              <li>Submit future only: 80 steps at 10 Hz, equivalent to GT steps 11..90.</li>
-            </ul>
-          </div>
-
-          <div class="status-note mt-4">
-            Submission portal and required file format will be linked here when the official release opens on July 1.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="leaderboard" class="section-wrap">
-      <div class="container is-max-widescreen">
-        <div class="content-card">
-          <p class="section-kicker">Leaderboard</p>
-          <h2 class="title is-3">Hidden until September 1.</h2>
           <p>
-            Rankings will be computed from the hidden test set after the submission deadline. The public leaderboard will display overall score and category scores.
+            The final zip should contain exactly one rollout pickle for every scenario listed in <code>manifests/test.txt</code>.
           </p>
-          <div class="leaderboard-scroll">
-            <div class="leaderboard-preview">
-              <div class="row">
-                <span>Rank</span>
-                <span>Team</span>
-                <span>Overall</span>
-                <span>Kinematic</span>
-                <span>Interaction</span>
-                <span>Region</span>
-                <span>Trajectory</span>
-                <span>Status</span>
-              </div>
-              <div class="row">
-                <span>-</span>
-                <span>Leaderboard opens Sep 1</span>
-                <span>-</span>
-                <span>-</span>
-                <span>-</span>
-                <span>-</span>
-                <span>-</span>
-                <span>Hidden</span>
-              </div>
-              <div class="row">
-                <span>-</span>
-                <span>Official test submissions</span>
-                <span>-</span>
-                <span>-</span>
-                <span>-</span>
-                <span>-</span>
-                <span>-</span>
-                <span>Pending</span>
-              </div>
-            </div>
+          <pre class="formula code-block"><code>your_team_submission.zip
+  your_team_submission/
+    &lt;scenario_id_0&gt;.pkl
+    &lt;scenario_id_1&gt;.pkl
+    ...</code></pre>
+          <pre class="formula code-block"><code>{
+    "agent_id": ...,          # [num_agents]
+    "simulated_states": ...,  # [num_rollouts, num_agents, 80, 4]
+}</code></pre>
+          <ul>
+            <li><code>scenario_id</code> is the top-level input <code>id</code>.</li>
+            <li><code>agent_id</code> should use <code>metadata.required_agent_ids</code>.</li>
+            <li><code>simulated_states</code> should store future steps 11..90 as <code>(x, y, z, yaw)</code>.</li>
+          </ul>
+          <div class="status-note mt-4">
+            Please fill out the Google submission form before <strong>September 5, 2026 AoE</strong>.
           </div>
         </div>
       </div>
@@ -747,7 +608,7 @@ Example:
   </main>
 
   <footer class="footer-note">
-    <p>HetroD Challenge 2026. For dataset access, submission format, and challenge updates, check this page after the July 1 opening.</p>
+    <p>Point of contact: <a href="mailto:bob020416.cs13@nycu.edu.tw">bob020416.cs13@nycu.edu.tw</a></p>
   </footer>
 </body>
 </html>
