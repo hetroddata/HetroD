@@ -442,7 +442,7 @@
             <div>
               <div class="brief-group">
                 <p class="section-kicker">Challenge Overview</p>
-                <h2 class="title is-3">A heterogeneous traffic simulation benchmark.</h2>
+                <h2 class="title is-3">A heterogeneous traffic simulation benchmark for ECCV 2026 DriveX.</h2>
                 <p>
                   HetroD Challenge v1.0 focuses on generating realistic heterogeneous closed-loop traffic simulation in dense urban scenes.
                 </p>
@@ -525,7 +525,7 @@
           <p class="section-kicker">Files</p>
           <h2 class="title is-3">Public data and evaluator layout.</h2>
           <p>
-            The public package contains ScenarioNet inputs for train and validation; the test package contains inputs only.
+            The public package contains ScenarioNet inputs and WOSAC-style GT pickles for train and validation; the test package contains inputs only.
           </p>
           <div class="status-note mt-4">
             The HetroD Challenge dataset may only be used for this challenge. Any other use or redistribution may result in disqualification from the submission and leaderboard.
@@ -574,7 +574,7 @@ Overall = Base + Coverage Bonus</div>
             <div class="metric-row">
               <div>
                 <p class="metric-label">1. Kinematic</p>
-                <h3 class="title is-4">realism by type.</h3>
+                <h3 class="title is-4">Realism by type.</h3>
               </div>
               <ul>
                 <li>Linear Speed</li>
@@ -641,12 +641,12 @@ Overall = Base + Coverage Bonus</div>
     ...</code></pre>
           <pre class="formula code-block"><code>{
     "agent_id": ...,          # [num_agents]
-    "simulated_states": ...,  # [num_rollouts, num_agents, 80, 4]
+    "simulated_states": ...,  # [32, num_agents, 80, 4]
 }</code></pre>
           <ul>
             <li><code>scenario_id</code> is the top-level input <code>id</code>.</li>
             <li><code>agent_id</code> should use <code>metadata.required_agent_ids</code>.</li>
-            <li><code>simulated_states</code> should store future steps 11..90 as <code>(x, y, z, yaw)</code>.</li>
+            <li><code>simulated_states</code> must contain exactly 32 rollouts and store future steps 11..90 as <code>(x, y, z, yaw)</code>.</li>
           </ul>
           <div class="status-note mt-4">
             Please fill out the Google submission form before <strong>September 5, 2026 AoE</strong>:
