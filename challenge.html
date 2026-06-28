@@ -80,6 +80,23 @@
       line-height: 1.6;
     }
 
+    .organizer-block {
+      max-width: 860px;
+      margin: 0 auto 2rem;
+      color: var(--muted);
+    }
+
+    .organizer-line {
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .organizer-line strong {
+      color: var(--ink);
+      font-weight: 800;
+    }
+
     .action-row {
       display: flex;
       flex-wrap: wrap;
@@ -364,6 +381,82 @@
       text-align: center;
     }
 
+    .organizer-footer {
+      padding: 3rem 1.5rem 1.5rem;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .organizer-footer-title {
+      margin-bottom: 1rem;
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .organizer-logo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .organizer-logo-link {
+      display: flex;
+      min-width: 210px;
+      max-width: 260px;
+      flex: 1 1 210px;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #f8fafc;
+      color: var(--ink);
+      text-align: left;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .organizer-logo-link:hover {
+      border-color: rgba(31, 93, 122, 0.35);
+      box-shadow: var(--shadow);
+      color: var(--ink);
+      transform: translateY(-1px);
+    }
+
+    .organizer-logo-mark {
+      display: grid;
+      width: 3.25rem;
+      height: 3.25rem;
+      flex: 0 0 3.25rem;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--primary-dark);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .organizer-logo-text strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .organizer-logo-text span {
+      display: block;
+      margin-top: 0.2rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.35;
+    }
+
     @media screen and (max-width: 900px) {
       .score-strip {
         grid-template-columns: 1fr;
@@ -416,6 +509,12 @@
       <p class="hero-subtitle">
         HetroD Challenge asks participants to generate realistic 8-second closed-loop traffic rollouts for mixed urban scenes with vehicles, two-wheelers, and pedestrians. The official evaluator measures kinematic realism, safety, cross-type interaction, and rollout coverage.
       </p>
+
+      <div class="organizer-block">
+        <p class="organizer-line">
+          <strong>Main organizers</strong>: Yu-Hsiang Chen, Wei-Jer Chang, and Yi-Ting Chen.
+        </p>
+      </div>
 
       <div class="action-row">
         <a href="https://github.com/bob020416/HetroD-Challenge-v1.0-Evaluation" target="_blank" rel="noopener" class="button challenge-button button-primary is-medium">
@@ -722,8 +821,38 @@ Overall = Base + Coverage Bonus</div>
     </section>
   </main>
 
-  <footer class="footer-note">
-    <p>Point of contact: <a href="mailto:bob020416.cs13@nycu.edu.tw">bob020416.cs13@nycu.edu.tw</a></p>
+  <footer>
+    <div class="organizer-footer">
+      <div class="container is-max-widescreen">
+        <p class="organizer-footer-title">Organized by</p>
+        <div class="organizer-logo-row" aria-label="Challenge organizing institutions">
+          <a class="organizer-logo-link" href="https://sites.google.com/site/yitingchen0524/hcis-lab" target="_blank" rel="noopener">
+            <span class="organizer-logo-mark">HCIS</span>
+            <span class="organizer-logo-text">
+              <strong>HCIS Lab</strong>
+              <span>National Yang Ming Chiao Tung University</span>
+            </span>
+          </a>
+          <a class="organizer-logo-link" href="https://msc.berkeley.edu/" target="_blank" rel="noopener">
+            <span class="organizer-logo-mark">MSC</span>
+            <span class="organizer-logo-text">
+              <strong>MSC Lab</strong>
+              <span>University of California, Berkeley</span>
+            </span>
+          </a>
+          <a class="organizer-logo-link" href="https://levelxdata.com/" target="_blank" rel="noopener">
+            <span class="organizer-logo-mark">fka</span>
+            <span class="organizer-logo-text">
+              <strong>fka GmbH</strong>
+              <span>Automotive research and engineering</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-note">
+      <p>Point of contact: <a href="mailto:bob020416.cs13@nycu.edu.tw">bob020416.cs13@nycu.edu.tw</a></p>
+    </div>
   </footer>
 </body>
 </html>
