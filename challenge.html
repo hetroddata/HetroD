@@ -188,6 +188,37 @@
       gap: 0.45rem;
     }
 
+    .prize-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .prize-item {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #f8fafc;
+      padding: 0.95rem;
+    }
+
+    .prize-rank {
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .prize-amount {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--ink);
+      font-size: 1.45rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
     .teaser-figure {
       margin: 0;
     }
@@ -462,6 +493,10 @@
         grid-template-columns: 1fr;
       }
 
+      .prize-list {
+        grid-template-columns: 1fr;
+      }
+
       .challenge-brief {
         grid-template-columns: 1fr;
       }
@@ -553,6 +588,28 @@
                   <li>Hidden test evaluation with official HetroD metrics.</li>
                   <li>Submission deadline: September 5, 2026 AoE.</li>
                 </ul>
+              </div>
+
+              <div class="brief-group">
+                <p class="section-kicker">Prize</p>
+                <h2 class="title is-3">Awards and certificates for the top three teams.</h2>
+                <div class="prize-list" aria-label="Challenge prize awards">
+                  <div class="prize-item">
+                    <span class="prize-rank">1st Place</span>
+                    <strong class="prize-amount">USD 500</strong>
+                    <p>Certificate included.</p>
+                  </div>
+                  <div class="prize-item">
+                    <span class="prize-rank">2nd Place</span>
+                    <strong class="prize-amount">USD 300</strong>
+                    <p>Certificate included.</p>
+                  </div>
+                  <div class="prize-item">
+                    <span class="prize-rank">3rd Place</span>
+                    <strong class="prize-amount">USD 200</strong>
+                    <p>Certificate included.</p>
+                  </div>
+                </div>
               </div>
 
               <div class="brief-group">
