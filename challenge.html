@@ -628,7 +628,7 @@
                 <p class="section-kicker">Submission</p>
                 <h2 class="title is-3">Submit one zipped folder of test rollouts.</h2>
                 <p>
-                  Each submitted pickle must contain all required agents from <code>metadata.required_agent_ids</code> and 80 future steps in global <code>(x, y, z, yaw)</code> coordinates.
+                  Each submitted pickle must contain exactly the required agents from <code>metadata.required_agent_ids</code> and 80 future steps in global <code>(x_m, y_m, z_m, yaw_rad)</code> coordinates.
                 </p>
               </div>
             </div>
@@ -686,8 +686,10 @@
             The public package contains ScenarioNet inputs and GT pickles for train and validation; the test package contains inputs only.
           </p>
           <div class="status-note mt-4">
-            Please use this link to download the dataset:
+            Download the official dataset package from:
             <a href="https://levelxdata.com/hetrod-dataset/" target="_blank" rel="noopener">https://levelxdata.com/hetrod-dataset/</a>.
+            The archive is named <code>HetroD-Challenge-v1.0-public.tar.gz</code>; its SHA-256 is
+            <code>d996b1843f5356cebe0a53449569c8574d31f62e0b1459ea9b3c931eeaca3c54</code>.
           </div>
           <pre class="formula code-block"><code>HetroD-Challenge-v1.0-public/
   train/{gt,scenarionet}/
@@ -754,7 +756,8 @@ Overall = Base + Coverage Bonus</div>
                 <h3 class="title is-4">Collision and valid region behavior.</h3>
               </div>
               <ul>
-                <li>Collision with 0.1 m annotation tolerance</li>
+                <li>Strict oriented-box collision with no geometric tolerance</li>
+                <li>GT pair/frame overlaps are not counted as new collisions</li>
                 <li>Type-aware valid region margin</li>
               </ul>
               <div class="formula">Safety = 0.5 Collision + 0.5 Valid Region</div>
@@ -785,6 +788,12 @@ Overall = Base + Coverage Bonus</div>
               <div class="formula">Coverage rewards diverse valid rollouts without rewarding unsafe or unrealistic spread.</div>
             </div>
           </div>
+          <div class="status-note mt-4">
+            <strong>Frozen agent-selection policy:</strong> public validation uses the automatic v0.8 selector.
+            Hidden test scoring retains every frozen automatic v0.8 target and pair, then adds eligible targets and
+            pairs from blind human review. This fixed union is identical for every submission; exact hidden-test
+            selections remain private with the test GT.
+          </div>
         </div>
       </div>
     </section>
@@ -808,9 +817,23 @@ Overall = Base + Coverage Bonus</div>
 }</code></pre>
           <ul>
             <li><code>scenario_id</code> is the top-level input <code>id</code>.</li>
-            <li><code>agent_id</code> should use <code>metadata.required_agent_ids</code>.</li>
-            <li><code>simulated_states</code> must contain exactly 32 rollouts and store future steps 11..90 as <code>(x, y, z, yaw)</code>.</li>
+            <li><code>agent_id</code> must match <code>metadata.required_agent_ids</code> exactly.</li>
+            <li><code>simulated_states</code> must contain exactly 32 rollouts and store future steps 11..90 as global <code>(x_m, y_m, z_m, yaw_rad)</code>; positions use meters and yaw uses radians.</li>
           </ul>
+          <p class="mt-5">
+            Run the official public preflight before uploading. It checks all 955 files, exact agent IDs,
+            array shapes, floating-point dtype, and finite values without requiring hidden test GT.
+          </p>
+          <pre class="formula code-block"><code>python scripts/validate_submission.py your_team_submission.zip \
+  --public-root /path/to/HetroD-Challenge-v1.0-public \
+  --output submission_preflight.json</code></pre>
+          <p>
+            For local validation scoring, use the public validation GT:
+          </p>
+          <pre class="formula code-block"><code>python hetrod_eval.py /path/to/valid_rollouts \
+  --gt-dir /path/to/HetroD-Challenge-v1.0-public/valid/gt \
+  --output valid_metrics.json \
+  --device cuda</code></pre>
           <div class="status-note mt-4">
             Please fill out the Google submission form before <strong>September 5, 2026 AoE</strong>:
             <a href="https://forms.gle/L9mcG5TQMa3mkhr7A" target="_blank" rel="noopener">https://forms.gle/L9mcG5TQMa3mkhr7A</a>
@@ -844,9 +867,9 @@ Overall = Base + Coverage Bonus</div>
                 <tr class="oracle-row">
                   <td>Oracle</td>
                   <td>GT Reference</td>
-                  <td>0.897</td>
+                  <td>0.900</td>
                   <td>1.000</td>
-                  <td>0.992</td>
+                  <td>1.000</td>
                   <td>1.000</td>
                   <td>0.000</td>
                 </tr>
